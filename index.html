@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>新品 / 二手双 Tab · Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<section class="phone phone-app" id="phone" aria-label="新品二手 Demo" data-mode="proposal3">
+  <header class="page-head">
+    <h1 class="page-title heiti">选购预期</h1>
+    <div class="scheme-switch cols-5" role="tablist" aria-label="方案切换">
+      <button type="button" data-mode="current" aria-selected="false">现状<br><small>95作渠道</small></button>
+      <button type="button" data-mode="proposal" aria-selected="false">方案1<br><small>成色选档</small></button>
+      <button type="button" data-mode="proposal2" aria-selected="false">方案2<br><small>单件列表</small></button>
+      <button type="button" class="on" data-mode="proposal3" aria-selected="true">方案3<br><small>智能推荐</small></button>
+      <button type="button" data-mode="proposal4" aria-selected="false">方案4<br><small>成色渠道</small></button>
+    </div>
+  </header>
+
+  <main class="sheet" id="sheet" data-mode="proposal3" data-tab="used">
+    <div class="product-row">
+      <img class="thumb" src="assets/sneaker.jpg" alt="" />
+      <div class="product-meta">
+        <div class="price-line">
+          <span class="yen">¥</span>
+          <strong class="price heiti" id="headerPrice">515</strong>
+          <span class="save" id="saveTag" hidden>比新品省 ¥147</span>
+        </div>
+        <p class="product-name">ASICS Gel-Sonoma 15-50</p>
+        <div class="promo-tags" id="promoTags">
+          <span class="tag">满减</span>
+          <span class="tag soft">包邮</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 方案1/2/3：新品 / 闲置 Tab -->
+    <div class="primary-tabs tabs-proposal" role="tablist" aria-label="商品类型">
+      <button type="button" class="primary-tab" data-tab="new" role="tab" aria-selected="false">
+        <span class="tab-title heiti">新品 · 正品现货</span>
+      </button>
+      <button type="button" class="primary-tab on" data-tab="used" role="tab" aria-selected="true">
+        <span class="tab-title heiti">95分 · 闲置商品</span>
+      </button>
+    </div>
+
+    <div class="legacy-tabs current-only" role="tablist" aria-label="对照">
+      <button type="button" class="legacy-tab on" data-legacy="new">无瑕</button>
+      <button type="button" class="legacy-tab" data-legacy="used">95分</button>
+    </div>
+
+    <!-- 方案1：成色选档 -->
+    <div class="used-panel proposal1-only" id="usedPanel" hidden>
+      <div class="section-label">
+        <span>成色</span>
+        <button type="button" class="text-link" id="gradeHelpBtn">成色说明 ›</button>
+      </div>
+      <div class="grade-tabs" role="tablist" aria-label="成色等级">
+        <button type="button" class="grade-tab" data-grade="SS" role="tab">
+          <strong>SS</strong><em>未使用</em>
+        </button>
+        <button type="button" class="grade-tab" data-grade="S" role="tab">
+          <strong>S</strong><em>极少穿着</em>
+        </button>
+        <button type="button" class="grade-tab on" data-grade="A" role="tab">
+          <strong>A</strong><em>轻微使用</em>
+        </button>
+        <button type="button" class="grade-tab" data-grade="B" role="tab">
+          <strong>B</strong><em>日常使用</em>
+        </button>
+      </div>
+
+      <button type="button" class="expect-card" id="reportEntry" aria-label="查看鉴别报告">
+        <div class="expect-head">
+          <span class="grade-pill heiti" id="gradePill">A · 轻微使用</span>
+          <span class="expect-report">鉴别报告 ›</span>
+        </div>
+        <span class="expect-hint" id="expectHint">有轻微穿着痕迹，不影响整体外观和功能</span>
+        <div class="expect-photos" aria-hidden="true">
+          <span class="ph"></span>
+          <span class="ph"></span>
+          <span class="ph"></span>
+          <span class="ph more">共9张</span>
+        </div>
+      </button>
+    </div>
+
+    <!-- 方案2：尺码筛选 + 自选单件列表 -->
+    <div class="goods-panel proposal2-only" id="goodsPanel" hidden>
+      <div class="section-label">
+        <span>尺码筛选</span>
+        <small id="goodsCountTip">在售 6 件</small>
+      </div>
+      <div class="size-chips" id="sizeChips" role="group" aria-label="尺码筛选"></div>
+
+      <div class="section-label goods-list-label">
+        <span>在售闲置</span>
+        <small>点卡片直接看鉴别报告</small>
+      </div>
+      <div class="goods-list" id="goodsList" role="listbox" aria-label="在售闲置"></div>
+    </div>
+
+    <!-- 方案3：尺码 → 系统推荐一件 -->
+    <div class="recommend-panel" id="recommendPanel" hidden>
+      <div class="size-head">
+        <span class="heiti">尺码</span>
+        <span class="size-tip">因该商品尺码偏小半码，推荐 43 码</span>
+      </div>
+      <div class="size-chips" id="recommendChips" role="group" aria-label="选择尺码"></div>
+
+      <div class="section-label rec-title-row">
+        <span>推荐最优商品</span>
+        <button type="button" class="text-link" id="poolListBtn">共 2 件可选 ›</button>
+      </div>
+      <div class="expect-card recommend-card" id="recommendCard">
+        <div class="rec-intro">
+          <p class="rec-reason" id="recReason">同尺码优选 · 轻微使用性价比</p>
+          <p class="rec-services" aria-label="服务保障">七天无理由 · 包邮 · 洗护 · 清洁消毒 · 假一赔三</p>
+        </div>
+
+        <article class="auth-card" id="recAuthCard">
+          <div class="auth-top">
+            <div class="auth-grade">
+              <strong class="heiti auth-letter" id="recGradeLetter">A</strong>
+              <button type="button" class="auth-grade-name" id="recGradeInfoBtn">
+                <span id="recGradeName">轻微使用</span>
+                <em class="auth-verdict">鉴别通过</em>
+                <i>ⓘ</i>
+              </button>
+            </div>
+          </div>
+          <ul class="defect-summary" id="recDefectSummary" aria-label="瑕疵汇总">
+            <li>
+              <span>外观</span>
+              <strong data-defect="look">轻微穿着痕迹</strong>
+            </li>
+            <li>
+              <span>功能</span>
+              <strong data-defect="func">完好</strong>
+            </li>
+            <li>
+              <span>配件</span>
+              <strong data-defect="parts">基本齐全</strong>
+            </li>
+          </ul>
+          <div class="auth-inspect">
+            <div class="auth-inspect-head">
+              <span>实物查验</span>
+              <span id="recDetailLink">1处细节 ›</span>
+            </div>
+            <div class="auth-grid" id="recAuthGrid" aria-hidden="true"></div>
+            <p class="auth-id" id="recReportId">报告编号: 953486497528</p>
+          </div>
+        </article>
+
+        <p class="co-legal rec-legal">
+          提交订单即表示同意 <button type="button" class="legal-link">买家须知</button>；查看
+          <button type="button" class="legal-link">卖家信息</button>
+        </p>
+      </div>
+      <p class="rec-empty" id="recEmpty" hidden>该尺码暂无在售闲置，请换个尺码</p>
+    </div>
+
+    <!-- 方案4：成色即渠道提示 -->
+    <p class="goods-flow-tip proposal4-only" id="gradeChannelTip" hidden>
+      四个成色即购买渠道，选尺码后点底部渠道进入确认订单
+    </p>
+
+    <!-- 新品 / 方案1·4 闲置 / 现状：尺码格 -->
+    <div class="sku-block" id="skuBlock">
+      <div class="size-head">
+        <span class="heiti">尺码</span>
+        <span class="size-tip">因该商品尺码偏小半码，推荐 43 码</span>
+      </div>
+      <div class="size-grid" id="sizeGrid" role="listbox" aria-label="选择尺码"></div>
+    </div>
+  </main>
+
+  <footer class="sheet-foot">
+    <!-- 得物渠道条：现状三渠道；方案1/2/3 新品路径拆 次日达 / 品牌官方 -->
+    <div class="channel-bar" id="channelBar" data-variant="full">
+      <button type="button" class="channel ch-fast on" data-channel="fast">
+        <span class="ch-row">
+          <strong class="heiti ch-price" id="chFastPrice">¥515</strong>
+          <i class="ch-pipe">|</i>
+          <span class="ch-sub">次日达</span>
+        </span>
+      </button>
+      <button type="button" class="channel ch-brand" data-channel="brand">
+        <em class="ch-tag">品牌官方</em>
+        <span class="ch-row">
+          <strong class="heiti ch-price" id="chBrandPrice">¥540</strong>
+          <i class="ch-pipe">|</i>
+          <span class="ch-sub">约2天到</span>
+        </span>
+      </button>
+      <button type="button" class="channel ch-95" data-channel="95">
+        <em class="ch-tag ch-tag-95"><b>95</b>轻微使用</em>
+        <span class="ch-row">
+          <strong class="heiti ch-price" id="ch95Price">¥371</strong>
+          <i class="ch-pipe">|</i>
+          <span class="ch-sub">约1-3天到</span>
+        </span>
+      </button>
+    </div>
+
+    <!-- 方案4：成色渠道 SS / S / A / B，点选进确认订单 -->
+    <div class="channel-bar" id="gradeChannelBar" data-variant="grades" hidden>
+      <button type="button" class="channel" data-grade="SS">
+        <em class="ch-tag">SS · 未使用</em>
+        <span class="ch-row">
+          <strong class="heiti ch-price" data-grade-price="SS">¥453</strong>
+        </span>
+      </button>
+      <button type="button" class="channel" data-grade="S">
+        <em class="ch-tag">S · 极少穿着</em>
+        <span class="ch-row">
+          <strong class="heiti ch-price" data-grade-price="S">¥422</strong>
+        </span>
+      </button>
+      <button type="button" class="channel on" data-grade="A">
+        <em class="ch-tag">A · 轻微使用</em>
+        <span class="ch-row">
+          <strong class="heiti ch-price" data-grade-price="A">¥371</strong>
+        </span>
+      </button>
+      <button type="button" class="channel" data-grade="B">
+        <em class="ch-tag">B · 日常使用</em>
+        <span class="ch-row">
+          <strong class="heiti ch-price" data-grade-price="B">¥309</strong>
+        </span>
+      </button>
+    </div>
+
+    <!-- 闲置路径：方案1 成色件 / 方案2·3 指定单件 -->
+    <div class="cta-bar" id="ctaBar" hidden>
+      <button type="button" class="cta-pay" id="recPayChannel">
+        使用 <b>支付宝</b> 先用后付，切换其他支付方式 <i>›</i>
+      </button>
+      <div class="cta-main">
+        <div class="cta-meta">
+          <strong class="cta-price heiti"><span class="yen">¥</span><span id="ctaPrice">371</span></strong>
+          <span class="cta-label" id="ctaLabel">约1-3天到 · A · 轻微使用</span>
+        </div>
+        <button type="button" class="cta-btn heiti" id="buyBtn">立即购买</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 鉴别报告详情（与确认页同构） -->
+  <section class="report" id="report" hidden>
+    <header class="co-nav">
+      <button type="button" class="back" id="reportBack" aria-label="返回">‹</button>
+      <strong class="heiti report-nav-title">鉴别报告</strong>
+      <span class="co-slogan">先鉴别 后发货</span>
+    </header>
+
+    <div class="report-scroll">
+      <div class="co-goods-row">
+        <img src="assets/sneaker.jpg" alt="" />
+        <div class="co-goods-body">
+          <div class="co-price-row">
+            <strong class="heiti">¥<span id="reportPrice">361</span></strong>
+            <span>同成色低价 价格明细 ›</span>
+          </div>
+          <p class="co-selected" id="reportGoodsMeta">已选：44码 · A · 轻微使用</p>
+          <p class="co-eta" id="reportDesc">平台已验 预计约1-3天送达</p>
+          <div class="service-tags" aria-label="服务保障">
+            <span>七天无理由</span>
+            <span>包邮</span>
+            <span>洗护</span>
+            <span>清洁消毒</span>
+            <span>假一赔三</span>
+          </div>
+        </div>
+      </div>
+
+      <article class="auth-card" id="reportAuthCard">
+        <div class="auth-top">
+          <div class="auth-grade">
+            <strong class="heiti auth-letter" id="reportGradeLetter">A</strong>
+            <button type="button" class="auth-grade-name" id="reportGradeOpen">
+              <span id="reportGradeName">轻微使用</span>
+              <em class="auth-verdict">鉴别通过</em>
+              <i>ⓘ</i>
+            </button>
+          </div>
+        </div>
+        <ul class="defect-summary" aria-label="瑕疵汇总">
+          <li><span>外观</span><strong data-defect="look">轻微穿着痕迹</strong></li>
+          <li><span>功能</span><strong data-defect="func">完好</strong></li>
+          <li><span>配件</span><strong data-defect="parts">基本齐全</strong></li>
+        </ul>
+        <div class="auth-inspect">
+          <div class="auth-inspect-head">
+            <span>实物查验</span>
+            <span id="reportDetailLink">1处细节 ›</span>
+          </div>
+          <div class="auth-grid" id="reportAuthGrid" aria-hidden="true"></div>
+          <p class="auth-id" id="reportId">报告编号: 953486497528</p>
+        </div>
+      </article>
+
+    </div>
+
+    <footer class="co-foot-95">
+      <p class="co-legal co-legal-foot">
+        提交订单即表示同意 <button type="button" class="legal-link">买家须知</button>；查看
+        <button type="button" class="legal-link">卖家信息</button>
+      </p>
+      <button type="button" class="cta-pay">
+        使用 <b>支付宝</b> 先用后付，切换其他支付方式 <i>›</i>
+      </button>
+      <div class="co-foot-main">
+        <button type="button" class="want-btn" aria-label="想要">
+          <span class="want-heart" aria-hidden="true"></span>
+          <em>2</em>
+          <span>想要</span>
+        </button>
+        <button type="button" class="pay-main heiti" id="reportBuyBtn">
+          <span class="pay-main-line">¥0 | 立即支付</span>
+          <small id="reportCtaLabel">确认收货后付款 ¥361</small>
+        </button>
+      </div>
+    </footer>
+  </section>
+
+  <!-- 确认页：对齐 95 分下单浮层（鉴别报告 + 服务 + 支付） -->
+  <section class="checkout" id="checkout" hidden>
+    <header class="co-sheet-head">
+      <button type="button" class="co-addr-btn" id="coAddrBtn">
+        <span class="co-pin" aria-hidden="true"></span>
+        <span id="coAddrText">cc 岚皋路200弄34号305</span>
+        <em>›</em>
+      </button>
+      <button type="button" class="co-close" id="backBtn" aria-label="关闭">×</button>
+    </header>
+
+    <div class="co-scroll">
+      <div class="co-goods-row">
+        <img src="assets/sneaker.jpg" alt="" id="coThumb" />
+        <div class="co-goods-body">
+          <div class="co-price-row">
+            <strong class="heiti">¥<span id="coPrice">371</span></strong>
+            <span id="coPriceTip">同成色低价 价格明细 ›</span>
+          </div>
+          <p class="co-selected" id="coSelected">已选：44码 · A · 轻微使用</p>
+          <p class="co-eta" id="coEta">平台已验 预计约1-3天送达</p>
+          <div class="service-tags" id="coUsedServices" aria-label="服务保障">
+            <span>七天无理由</span>
+            <span>包邮</span>
+            <span>洗护</span>
+            <span>清洁消毒</span>
+            <span>假一赔三</span>
+          </div>
+        </div>
+      </div>
+
+      <article class="auth-card" id="coAuthCard">
+        <div class="auth-top">
+          <div class="auth-grade">
+            <strong class="heiti auth-letter" id="coGradeLetter">A</strong>
+            <button type="button" class="auth-grade-name" id="coGradeInfoBtn">
+              <span id="coGradeName">轻微使用</span>
+              <em class="auth-verdict">鉴别通过</em>
+              <i>ⓘ</i>
+            </button>
+          </div>
+        </div>
+        <ul class="defect-summary" aria-label="瑕疵汇总">
+          <li><span>外观</span><strong data-defect="look">轻微穿着痕迹</strong></li>
+          <li><span>功能</span><strong data-defect="func">完好</strong></li>
+          <li><span>配件</span><strong data-defect="parts">基本齐全</strong></li>
+        </ul>
+        <div class="auth-inspect">
+          <div class="auth-inspect-head">
+            <span>实物查验</span>
+            <span id="coDetailLink">1处细节 ›</span>
+          </div>
+          <div class="auth-grid" id="coAuthGrid" aria-hidden="true"></div>
+          <p class="auth-id" id="coReportId">报告编号: 953486497528</p>
+        </div>
+      </article>
+
+      <div class="co-new-services" id="coNewServices" hidden>
+        <span>七天无理由</span>
+        <span>晚到必赔</span>
+        <span>正品保障</span>
+        <span>假一赔三</span>
+      </div>
+
+    </div>
+
+    <footer class="co-foot-95" id="coLegal">
+      <p class="co-legal co-legal-foot">
+        提交订单即表示同意 <button type="button" class="legal-link">买家须知</button>；查看
+        <button type="button" class="legal-link">卖家信息</button>
+      </p>
+      <button type="button" class="cta-pay" id="coPayChannel">
+        使用 <b>支付宝</b> 先用后付，切换其他支付方式 <i>›</i>
+      </button>
+      <div class="co-foot-main">
+        <button type="button" class="want-btn" id="wantBtn" aria-label="想要">
+          <span class="want-heart" aria-hidden="true"></span>
+          <em>2</em>
+          <span>想要</span>
+        </button>
+        <button type="button" class="pay-main heiti" id="payBtn">
+          <span class="pay-main-line">¥0 | 立即支付</span>
+          <small id="paySub">确认收货后付款 ¥371</small>
+        </button>
+      </div>
+    </footer>
+  </section>
+
+  <dialog class="grade-sheet" id="gradeSheet">
+    <form method="dialog" class="grade-sheet-inner">
+      <div class="sheet-bar"></div>
+      <h3 class="heiti">球鞋成色等级说明</h3>
+      <p class="sheet-sub">SS / S / A / B · 球鞋释义</p>
+      <ul class="grade-examples" id="gradeExamples"></ul>
+      <button class="sheet-close heiti" value="close">我知道了</button>
+    </form>
+  </dialog>
+
+  <!-- 方案3：共 x 件可选浮层 -->
+  <dialog class="grade-sheet goods-sheet" id="goodsSheet">
+    <div class="grade-sheet-inner goods-sheet-inner">
+      <div class="sheet-bar"></div>
+      <div class="goods-sheet-head">
+        <h3 class="heiti">在售闲置</h3>
+        <small>点卡片切换推荐件</small>
+      </div>
+      <div class="goods-list goods-sheet-list" id="goodsSheetList" role="listbox" aria-label="在售闲置"></div>
+      <button type="button" class="sheet-close heiti" id="goodsSheetClose">关闭</button>
+    </div>
+  </dialog>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
