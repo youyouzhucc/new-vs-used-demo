@@ -25,7 +25,7 @@
       <img class="thumb" src="assets/sneaker.jpg" alt="" />
       <div class="product-meta">
         <div class="price-line">
-          <span class="dw-badge heiti" aria-hidden="true">得物</span>
+          <span class="dw-badge heiti" id="brandBadge" aria-hidden="true">得物</span>
           <span class="yen">¥</span>
           <strong class="price heiti" id="headerPrice">515</strong>
           <span class="price-aside" id="priceAside">仅剩2件 比发售价低¥175</span>
@@ -43,8 +43,9 @@
             <span class="qty-num" id="qtyNum">1</span>
             <button type="button" class="qty-btn" data-qty="1" aria-label="增加">+</button>
           </div>
-          <button type="button" class="action-chip">刻字 ›</button>
-          <button type="button" class="action-chip wide">以旧换新 最高抵¥800 <i>⇄</i></button>
+          <button type="button" class="action-chip" id="engraveChip">刻字 ›</button>
+          <button type="button" class="action-chip" id="addonChip" hidden>加购服务 ›</button>
+          <button type="button" class="action-chip wide" id="tradeInChip">以旧换新 最高抵¥800 <i>⇄</i></button>
         </div>
       </div>
     </div>

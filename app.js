@@ -595,6 +595,13 @@
     }
     if (dealSave) dealSave.textContent = `限时补贴已省¥${subsidy}`;
 
+    const badge = $("#brandBadge");
+    if (badge) badge.textContent = used ? "95分" : "得物";
+    const engrave = $("#engraveChip");
+    const addon = $("#addonChip");
+    if (engrave) engrave.hidden = used;
+    if (addon) addon.hidden = !used;
+
     if (used && price) {
       const diff = newPrice(refSize) - price;
       save.hidden = true;
