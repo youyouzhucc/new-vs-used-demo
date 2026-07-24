@@ -272,7 +272,7 @@
     return state.mode === "proposal3" && state.tab === "used";
   }
 
-  /** 方案5：成色筛选 + 底部购买 */
+  /** 方案4：成色筛选 + 底部购买 */
   function isGradeFilterFlow() {
     return state.mode === "proposal4" && state.tab === "used";
   }
