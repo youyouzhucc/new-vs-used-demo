@@ -165,7 +165,7 @@
   const GRADE_WEIGHT = { A: 4, S: 3, SS: 3, B: 1 };
 
   const state = {
-    mode: "proposal5",
+    mode: "proposal4",
     tab: "used",
     grade: "A",
     size: 44,
@@ -256,25 +256,25 @@
 
   function isProposalMode() {
     return (
+      state.mode === "proposal1" ||
       state.mode === "proposal2" ||
       state.mode === "proposal3" ||
-      state.mode === "proposal4" ||
-      state.mode === "proposal5"
+      state.mode === "proposal4"
     );
   }
 
   function isTypeFlow() {
-    return state.mode === "proposal4" || state.mode === "proposal5";
+    return state.mode === "proposal3" || state.mode === "proposal4";
   }
 
   /** 方案4：成色即渠道 */
   function isGradeChannelFlow() {
-    return state.mode === "proposal4" && state.tab === "used";
+    return state.mode === "proposal3" && state.tab === "used";
   }
 
   /** 方案5：成色筛选 + 底部购买 */
   function isGradeFilterFlow() {
-    return state.mode === "proposal5" && state.tab === "used";
+    return state.mode === "proposal4" && state.tab === "used";
   }
 
   function isUsedContext() {
@@ -284,12 +284,12 @@
 
   /** 方案2：列表自选单件 */
   function isListFlow() {
-    return state.mode === "proposal2" && state.tab === "used";
+    return state.mode === "proposal1" && state.tab === "used";
   }
 
   /** 方案3：系统推荐一件，不浏览列表 */
   function isRecommendFlow() {
-    return state.mode === "proposal3" && state.tab === "used";
+    return state.mode === "proposal2" && state.tab === "used";
   }
 
   /** 下单绑定具体 goods */
@@ -397,7 +397,7 @@
     if (state.mode === "current" && state.channel === "95") return channel95Price(sz);
     if (state.mode === "current" && state.channel === "brand") return brandPrice(sz);
     if (
-      (state.mode === "proposal4" || state.mode === "proposal5") &&
+      (state.mode === "proposal3" || state.mode === "proposal4") &&
       state.tab === "used"
     ) {
       return usedPrice(sz, state.grade);
@@ -618,7 +618,7 @@
         $("#ctaLabel").textContent = g
           ? `${g.delivery} · ${g.grade} · ${GRADES[g.grade].tab}`
           : "请选择在售闲置";
-      } else if (state.mode === "proposal4" || state.mode === "proposal5") {
+      } else if (state.mode === "proposal3" || state.mode === "proposal4") {
         $("#ctaLabel").textContent = `约1-3天到 · ${state.grade} · ${GRADES[state.grade].tab}`;
       } else {
         $("#ctaLabel").textContent = "约1-3天到 · 轻微使用";
@@ -815,11 +815,11 @@
   function applyTab(tab) {
     state.tab = tab;
     state.channel = tab === "used" ? "95" : "fast";
-    if (tab === "used" && state.mode === "proposal2") {
+    if (tab === "used" && state.mode === "proposal1") {
       state.filterAll = true;
       state.filterSizes.clear();
     }
-    if (tab === "used" && state.mode === "proposal3") {
+    if (tab === "used" && state.mode === "proposal2") {
       state.recIndex = 0;
     }
     syncUI();

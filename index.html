@@ -5,24 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <title>新品 / 二手双 Tab · Demo</title>
+  <link rel="preload" href="assets/sneaker.jpg" as="image" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<section class="phone phone-app" id="phone" aria-label="新品二手 Demo" data-mode="proposal5">
+<section class="phone phone-app" id="phone" aria-label="新品二手 Demo" data-mode="proposal4">
   <header class="page-head">
     <h1 class="page-title heiti">选购预期</h1>
     <div class="scheme-switch cols-5" role="tablist" aria-label="方案切换">
       <button type="button" data-mode="current" aria-selected="false">现状<br><small>95作渠道</small></button>
-      <button type="button" data-mode="proposal2" aria-selected="false">方案2<br><small>单件列表</small></button>
-      <button type="button" data-mode="proposal3" aria-selected="false">方案3<br><small>智能推荐</small></button>
-      <button type="button" data-mode="proposal4" aria-selected="false">方案4<br><small>成色渠道</small></button>
-      <button type="button" class="on" data-mode="proposal5" aria-selected="true">方案5<br><small>成色筛选</small></button>
+      <button type="button" data-mode="proposal1" aria-selected="false">方案1<br><small>单件列表</small></button>
+      <button type="button" data-mode="proposal2" aria-selected="false">方案2<br><small>智能推荐</small></button>
+      <button type="button" data-mode="proposal3" aria-selected="false">方案3<br><small>成色渠道</small></button>
+      <button type="button" class="on" data-mode="proposal4" aria-selected="true">方案4<br><small>成色筛选</small></button>
     </div>
   </header>
 
-  <main class="sheet" id="sheet" data-mode="proposal5" data-tab="used">
+  <main class="sheet" id="sheet" data-mode="proposal4" data-tab="used">
     <div class="product-row">
-      <img class="thumb" src="assets/sneaker.jpg" alt="" />
+      <img class="thumb" src="assets/sneaker.jpg" alt="" width="72" height="88" decoding="async" fetchpriority="high" />
       <div class="product-meta">
         <div class="price-line">
           <span class="dw-badge heiti" id="brandBadge" aria-hidden="true">得物</span>
@@ -50,7 +51,7 @@
       </div>
     </div>
 
-    <!-- 方案2/3：新品 / 闲置 Tab -->
+    <!-- 方案1/2：新品 / 闲置 Tab -->
     <div class="primary-tabs tabs-proposal" role="tablist" aria-label="商品类型">
       <button type="button" class="primary-tab" data-tab="new" role="tab" aria-selected="false">
         <span class="tab-title heiti">新品 · 正品现货</span>
@@ -60,7 +61,7 @@
       </button>
     </div>
 
-    <!-- 方案4/5：类型选择（文字 chips，无图） -->
+    <!-- 方案3/4：类型选择（文字 chips，无图） -->
     <div class="series-block type-flow-only" id="seriesBlock" hidden>
       <div class="section-label spec-label">
         <span>类型</span>
@@ -75,8 +76,8 @@
       </div>
     </div>
 
-    <!-- 方案5：成色筛选（类型下方，带说明与成色释义） -->
-    <div class="grade-filter proposal5-only" id="gradeFilter" hidden>
+    <!-- 方案4：成色筛选（类型下方，带说明与成色释义） -->
+    <div class="grade-filter proposal4-only" id="gradeFilter" hidden>
       <div class="section-label spec-label">
         <span>成色</span>
         <button type="button" class="text-link grade-help-btn">成色说明 ›</button>
@@ -102,8 +103,8 @@
       <button type="button" class="legacy-tab" data-legacy="used">95分</button>
     </div>
 
-    <!-- 方案2：尺码筛选 + 自选单件列表 -->
-    <div class="goods-panel proposal2-only" id="goodsPanel" hidden>
+    <!-- 方案1：尺码筛选 + 自选单件列表 -->
+    <div class="goods-panel proposal1-only" id="goodsPanel" hidden>
       <div class="section-label">
         <span>尺码筛选</span>
         <small id="goodsCountTip">在售 6 件</small>
@@ -117,7 +118,7 @@
       <div class="goods-list" id="goodsList" role="listbox" aria-label="在售闲置"></div>
     </div>
 
-    <!-- 方案3：尺码 → 系统推荐一件 -->
+    <!-- 方案2：尺码 → 系统推荐一件 -->
     <div class="recommend-panel" id="recommendPanel" hidden>
       <div class="size-head">
         <span class="heiti">尺码</span>
@@ -216,7 +217,7 @@
       </button>
     </div>
 
-    <!-- 方案4：成色渠道 SS / S / A / B，点选进确认订单 -->
+    <!-- 方案3：成色渠道 SS / S / A / B，点选进确认订单 -->
     <div class="channel-bar" id="gradeChannelBar" data-variant="grades" hidden>
       <button type="button" class="channel" data-grade="SS">
         <em class="ch-tag">SS · 未使用</em>
@@ -258,7 +259,7 @@
       </div>
     </div>
 
-    <!-- 方案5：资质 / 时效 / 价格（点选进确认订单） -->
+    <!-- 方案4：资质 / 时效 / 价格（点选进确认订单） -->
     <div class="channel-bar" id="gradeBuyBar" data-variant="svc" hidden>
       <button type="button" class="channel ch-svc" data-buy="1">
         <em class="ch-tag">资质</em>
@@ -291,7 +292,7 @@
 
     <div class="report-scroll">
       <div class="co-goods-row">
-        <img src="assets/sneaker.jpg" alt="" />
+        <img src="assets/sneaker.jpg" alt="" width="72" height="72" loading="lazy" decoding="async" />
         <div class="co-goods-body">
           <div class="co-price-row">
             <strong class="heiti">¥<span id="reportPrice">361</span></strong>
@@ -372,7 +373,7 @@
 
     <div class="co-scroll">
       <div class="co-goods-row">
-        <img src="assets/sneaker.jpg" alt="" id="coThumb" />
+        <img src="assets/sneaker.jpg" alt="" id="coThumb" width="72" height="72" loading="lazy" decoding="async" />
         <div class="co-goods-body">
           <div class="co-price-row">
             <strong class="heiti">¥<span id="coPrice">371</span></strong>
@@ -471,6 +472,6 @@
   </dialog>
 </section>
 
-<script src="app.js"></script>
+<script src="app.js" defer></script>
 </body>
 </html>

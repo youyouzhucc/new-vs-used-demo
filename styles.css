@@ -210,87 +210,87 @@ button {
 
 /* 现状：隐藏方案控件 */
 .sheet[data-mode="current"] .tabs-proposal,
+.sheet[data-mode="current"] .proposal1-only,
 .sheet[data-mode="current"] .proposal2-only,
 .sheet[data-mode="current"] .proposal3-only,
 .sheet[data-mode="current"] .proposal4-only,
-.sheet[data-mode="current"] .proposal5-only,
 .sheet[data-mode="current"] .type-flow-only,
 .phone[data-mode="current"] .tabs-proposal,
+.phone[data-mode="current"] .proposal1-only,
 .phone[data-mode="current"] .proposal2-only,
 .phone[data-mode="current"] .proposal3-only,
 .phone[data-mode="current"] .proposal4-only,
-.phone[data-mode="current"] .proposal5-only,
 .phone[data-mode="current"] .type-flow-only {
   display: none !important;
 }
 
 /* 方案2–5：隐藏现状对照 Tab */
+.sheet[data-mode="proposal1"] .current-only,
 .sheet[data-mode="proposal2"] .current-only,
 .sheet[data-mode="proposal3"] .current-only,
 .sheet[data-mode="proposal4"] .current-only,
-.sheet[data-mode="proposal5"] .current-only,
+.phone[data-mode="proposal1"] .current-only,
 .phone[data-mode="proposal2"] .current-only,
 .phone[data-mode="proposal3"] .current-only,
-.phone[data-mode="proposal4"] .current-only,
-.phone[data-mode="proposal5"] .current-only {
+.phone[data-mode="proposal4"] .current-only {
   display: none !important;
 }
 
 /* 各方案互斥面板 */
+.sheet[data-mode="proposal1"] .proposal2-only,
+.sheet[data-mode="proposal1"] .proposal3-only,
+.sheet[data-mode="proposal1"] .proposal4-only,
+.sheet[data-mode="proposal1"] .type-flow-only,
+.phone[data-mode="proposal1"] .proposal2-only,
+.phone[data-mode="proposal1"] .proposal3-only,
+.phone[data-mode="proposal1"] .proposal4-only,
+.phone[data-mode="proposal1"] .type-flow-only {
+  display: none !important;
+}
+
+.sheet[data-mode="proposal2"] .proposal1-only,
 .sheet[data-mode="proposal2"] .proposal3-only,
 .sheet[data-mode="proposal2"] .proposal4-only,
-.sheet[data-mode="proposal2"] .proposal5-only,
 .sheet[data-mode="proposal2"] .type-flow-only,
+.phone[data-mode="proposal2"] .proposal1-only,
 .phone[data-mode="proposal2"] .proposal3-only,
 .phone[data-mode="proposal2"] .proposal4-only,
-.phone[data-mode="proposal2"] .proposal5-only,
 .phone[data-mode="proposal2"] .type-flow-only {
   display: none !important;
 }
 
+.sheet[data-mode="proposal3"] .proposal1-only,
 .sheet[data-mode="proposal3"] .proposal2-only,
 .sheet[data-mode="proposal3"] .proposal4-only,
-.sheet[data-mode="proposal3"] .proposal5-only,
-.sheet[data-mode="proposal3"] .type-flow-only,
+.phone[data-mode="proposal3"] .proposal1-only,
 .phone[data-mode="proposal3"] .proposal2-only,
-.phone[data-mode="proposal3"] .proposal4-only,
-.phone[data-mode="proposal3"] .proposal5-only,
-.phone[data-mode="proposal3"] .type-flow-only {
+.phone[data-mode="proposal3"] .proposal4-only {
   display: none !important;
 }
 
+.sheet[data-mode="proposal4"] .proposal1-only,
 .sheet[data-mode="proposal4"] .proposal2-only,
 .sheet[data-mode="proposal4"] .proposal3-only,
-.sheet[data-mode="proposal4"] .proposal5-only,
+.phone[data-mode="proposal4"] .proposal1-only,
 .phone[data-mode="proposal4"] .proposal2-only,
-.phone[data-mode="proposal4"] .proposal3-only,
-.phone[data-mode="proposal4"] .proposal5-only {
-  display: none !important;
-}
-
-.sheet[data-mode="proposal5"] .proposal2-only,
-.sheet[data-mode="proposal5"] .proposal3-only,
-.sheet[data-mode="proposal5"] .proposal4-only,
-.phone[data-mode="proposal5"] .proposal2-only,
-.phone[data-mode="proposal5"] .proposal3-only,
-.phone[data-mode="proposal5"] .proposal4-only {
+.phone[data-mode="proposal4"] .proposal3-only {
   display: none !important;
 }
 
 /* 方案4/5：隐藏双 Tab，改用「类型」chips */
+.sheet[data-mode="proposal3"] .tabs-proposal,
 .sheet[data-mode="proposal4"] .tabs-proposal,
-.sheet[data-mode="proposal5"] .tabs-proposal,
-.phone[data-mode="proposal4"] .tabs-proposal,
-.phone[data-mode="proposal5"] .tabs-proposal {
+.phone[data-mode="proposal3"] .tabs-proposal,
+.phone[data-mode="proposal4"] .tabs-proposal {
   display: none !important;
 }
 
 /* 方案4/5：类型 / 成色 / 尺码 标题统一 */
 .spec-label,
+.sheet[data-mode="proposal3"] .spec-label,
 .sheet[data-mode="proposal4"] .spec-label,
-.sheet[data-mode="proposal5"] .spec-label,
-.sheet[data-mode="proposal4"] .size-head,
-.sheet[data-mode="proposal5"] .size-head {
+.sheet[data-mode="proposal3"] .size-head,
+.sheet[data-mode="proposal4"] .size-head {
   display: flex;
   justify-content: flex-start;
   align-items: baseline;
@@ -314,18 +314,18 @@ button {
 }
 
 .spec-label .size-tip,
-.sheet[data-mode="proposal4"] .size-tip,
-.sheet[data-mode="proposal5"] .size-tip {
+.sheet[data-mode="proposal3"] .size-tip,
+.sheet[data-mode="proposal4"] .size-tip {
   font-size: 11px;
   font-weight: 400;
   color: #555;
 }
 
+.sheet[data-mode="proposal3"] .series-block,
 .sheet[data-mode="proposal4"] .series-block,
-.sheet[data-mode="proposal5"] .series-block,
-.sheet[data-mode="proposal5"] .grade-filter,
-.sheet[data-mode="proposal4"] .sku-block,
-.sheet[data-mode="proposal5"] .sku-block {
+.sheet[data-mode="proposal4"] .grade-filter,
+.sheet[data-mode="proposal3"] .sku-block,
+.sheet[data-mode="proposal4"] .sku-block {
   margin: 0 0 14px;
 }
 
@@ -422,7 +422,7 @@ button {
   border-radius: 4px;
   background: #f0f0f0;
   border: 1px solid #ececec;
-  filter: grayscale(1);
+  content-visibility: auto;
 }
 
 .product-meta {
@@ -638,7 +638,6 @@ button {
 /* Used panel */
 .used-panel {
   margin-bottom: 8px;
-  animation: fadeIn 0.22s ease both;
 }
 
 @keyframes fadeIn {
@@ -782,12 +781,11 @@ button {
 .expect-photos .ph {
   width: 52px;
   height: 52px;
-  border-radius: 6px;
+  border-radius: 4px;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent),
     url("assets/sneaker.jpg") center / cover;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  filter: grayscale(1);
 }
 
 .expect-photos .ph:nth-child(2) {
@@ -813,7 +811,6 @@ button {
 /* 方案2/3：尺码 chip + 单件列表 */
 .goods-panel {
   margin-bottom: 4px;
-  animation: fadeIn 0.22s ease both;
 }
 
 .goods-flow-tip {
@@ -829,7 +826,6 @@ button {
 
 .recommend-panel {
   margin-bottom: 4px;
-  animation: fadeIn 0.22s ease both;
 }
 
 .recommend-card {
@@ -1020,8 +1016,8 @@ button {
     linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent),
     url("assets/sneaker.jpg") center / cover;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  filter: grayscale(1);
   position: relative;
+  contain: layout paint;
 }
 
 .auth-shot::after {
@@ -1193,10 +1189,10 @@ button {
 .goods-photo {
   width: 72px;
   height: 72px;
-  border-radius: 8px;
+  border-radius: 4px;
   background: #f0f0f0 url("assets/sneaker.jpg") center / cover;
-  filter: grayscale(1);
   border: 1px solid rgba(0, 0, 0, 0.06);
+  contain: paint;
 }
 
 .goods-body {
@@ -1728,9 +1724,8 @@ button {
   width: 72px;
   height: 72px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 4px;
   background: #f5f5f5;
-  filter: grayscale(0.25);
 }
 
 .co-price-row {
@@ -1901,13 +1896,12 @@ button {
 .shot {
   width: 64px;
   height: 64px;
-  border-radius: 6px;
+  border-radius: 4px;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent),
     url("assets/sneaker.jpg") center / cover;
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  filter: grayscale(1);
 }
 
 .shot::after {
@@ -2223,16 +2217,15 @@ button {
 .ge-swatch {
   width: 48px;
   height: 48px;
-  border-radius: 6px;
+  border-radius: 4px;
   flex-shrink: 0;
   background: url("assets/sneaker.jpg") center / cover;
-  filter: grayscale(1);
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .ge-swatch.b {
   background-position: 30% 70%;
-  filter: grayscale(1) contrast(0.9);
+  opacity: 0.9;
 }
 
 .ge-title {
