@@ -599,8 +599,10 @@
     if (badge) badge.textContent = used ? "95分" : "得物";
     const engrave = $("#engraveChip");
     const addon = $("#addonChip");
+    const tradeIn = $("#tradeInChip");
     if (engrave) engrave.hidden = used;
     if (addon) addon.hidden = !used;
+    if (tradeIn) tradeIn.hidden = used;
 
     if (used && price) {
       const diff = newPrice(refSize) - price;
