@@ -192,7 +192,7 @@
   const seriesChips = $("#seriesChips");
   const gradeFilter = $("#gradeFilter");
   const gradeFilterChips = $("#gradeFilterChips");
-  const gradeBuyBtn = $("#gradeBuyBtn");
+  const gradeBuyBar = $("#gradeBuyBar");
   const skuBlock = $("#skuBlock");
   const channelBar = $("#channelBar");
   const gradeChannelBar = $("#gradeChannelBar");
@@ -324,15 +324,16 @@
     channelBar.hidden = !showNewChannels;
     gradeChannelBar.hidden = !showGradeChannels;
     ctaBar.hidden = !showCta;
-    if (gradeBuyBtn) gradeBuyBtn.hidden = !showGradeBuy;
+    if (gradeBuyBar) gradeBuyBar.hidden = !showGradeBuy;
 
     if (showGradeBuy) {
-      const g = GRADES[state.grade] || GRADES.A;
       const price = usedPrice(state.size, state.grade);
       const priceEl = $("#gradeBuyPrice");
-      const descEl = $("#gradeBuyDesc");
-      if (priceEl) priceEl.textContent = String(price);
-      if (descEl) descEl.textContent = `${state.grade} · ${g.tab}`;
+      const svcEl = $("#gradeBuySvc");
+      const etaEl = $("#gradeBuyEta");
+      if (priceEl) priceEl.textContent = `¥${price}`;
+      if (svcEl) svcEl.textContent = "七天无理由";
+      if (etaEl) etaEl.textContent = "约1-3天到";
     }
 
     if (showNewChannels) {
@@ -854,8 +855,12 @@
     });
   }
 
-  if (gradeBuyBtn) {
-    gradeBuyBtn.addEventListener("click", openCheckout);
+  if (gradeBuyBar) {
+    gradeBuyBar.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-buy]");
+      if (!btn) return;
+      openCheckout();
+    });
   }
 
   sizeGrid.addEventListener("click", (e) => {

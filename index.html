@@ -62,7 +62,7 @@
 
     <!-- 方案4/5：类型选择（文字 chips，无图） -->
     <div class="series-block type-flow-only" id="seriesBlock" hidden>
-      <div class="section-label">
+      <div class="section-label spec-label">
         <span>类型</span>
       </div>
       <div class="series-chips" id="seriesChips" role="tablist" aria-label="商品类型">
@@ -72,6 +72,19 @@
         <button type="button" class="series-chip on" data-tab="used" role="tab" aria-selected="true">
           95分 · 闲置商品
         </button>
+      </div>
+    </div>
+
+    <!-- 方案5：成色筛选（类型下方） -->
+    <div class="grade-filter proposal5-only" id="gradeFilter" hidden>
+      <div class="section-label spec-label">
+        <span>成色</span>
+      </div>
+      <div class="grade-filter-chips" id="gradeFilterChips" role="tablist" aria-label="成色筛选">
+        <button type="button" class="grade-filter-chip" data-grade="SS" role="tab">SS</button>
+        <button type="button" class="grade-filter-chip" data-grade="S" role="tab">S</button>
+        <button type="button" class="grade-filter-chip on" data-grade="A" role="tab">A</button>
+        <button type="button" class="grade-filter-chip" data-grade="B" role="tab">B</button>
       </div>
     </div>
 
@@ -180,24 +193,11 @@
 
     <!-- 新品 / 方案1·4·5 闲置 / 现状：尺码格 -->
     <div class="sku-block" id="skuBlock">
-      <div class="size-head">
-        <span class="heiti">尺码</span>
-        <span class="size-tip">因该商品尺码偏小半码，推荐 43 码</span>
+      <div class="section-label spec-label size-head">
+        <span>尺码</span>
+        <small class="size-tip">因该商品尺码偏小半码，推荐 43 码</small>
       </div>
       <div class="size-grid" id="sizeGrid" role="listbox" aria-label="选择尺码"></div>
-    </div>
-
-    <!-- 方案5：成色筛选 -->
-    <div class="grade-filter proposal5-only" id="gradeFilter" hidden>
-      <div class="section-label">
-        <span>成色</span>
-      </div>
-      <div class="grade-filter-chips" id="gradeFilterChips" role="tablist" aria-label="成色筛选">
-        <button type="button" class="grade-filter-chip" data-grade="SS" role="tab">SS</button>
-        <button type="button" class="grade-filter-chip" data-grade="S" role="tab">S</button>
-        <button type="button" class="grade-filter-chip on" data-grade="A" role="tab">A</button>
-        <button type="button" class="grade-filter-chip" data-grade="B" role="tab">B</button>
-      </div>
     </div>
   </main>
 
@@ -271,12 +271,27 @@
       </div>
     </div>
 
-    <!-- 方案5：价格 + 成色描述 + 立即购买 -->
-    <button type="button" class="grade-buy-btn" id="gradeBuyBtn" hidden>
-      <span class="grade-buy-price heiti">¥<em id="gradeBuyPrice">371</em></span>
-      <span class="grade-buy-desc" id="gradeBuyDesc">A · 轻微使用</span>
-      <span class="grade-buy-action heiti">立即购买</span>
-    </button>
+    <!-- 方案5：服务 / 时效 / 价格（点选进确认订单） -->
+    <div class="channel-bar" id="gradeBuyBar" data-variant="svc" hidden>
+      <button type="button" class="channel ch-svc" data-buy="1">
+        <em class="ch-tag">服务</em>
+        <span class="ch-row">
+          <span class="ch-sub" id="gradeBuySvc">七天无理由</span>
+        </span>
+      </button>
+      <button type="button" class="channel ch-eta" data-buy="1">
+        <em class="ch-tag">时效</em>
+        <span class="ch-row">
+          <span class="ch-sub" id="gradeBuyEta">约1-3天到</span>
+        </span>
+      </button>
+      <button type="button" class="channel ch-price on" data-buy="1">
+        <em class="ch-tag">价格</em>
+        <span class="ch-row">
+          <strong class="heiti ch-price" id="gradeBuyPrice">¥371</strong>
+        </span>
+      </button>
+    </div>
   </footer>
 
   <!-- 鉴别报告详情（与确认页同构） -->

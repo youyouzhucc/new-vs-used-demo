@@ -310,9 +310,47 @@ button {
   display: none !important;
 }
 
+/* 方案4/5：类型 / 成色 / 尺码 标题统一 */
+.spec-label,
+.sheet[data-mode="proposal4"] .spec-label,
+.sheet[data-mode="proposal5"] .spec-label,
+.sheet[data-mode="proposal4"] .size-head,
+.sheet[data-mode="proposal5"] .size-head {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+}
+
+.spec-label .size-tip,
+.sheet[data-mode="proposal4"] .size-tip,
+.sheet[data-mode="proposal5"] .size-tip {
+  font-size: 11px;
+  font-weight: 400;
+  color: #888;
+}
+
+.sheet[data-mode="proposal4"] .series-block,
+.sheet[data-mode="proposal5"] .series-block,
+.sheet[data-mode="proposal5"] .grade-filter,
+.sheet[data-mode="proposal4"] .sku-block,
+.sheet[data-mode="proposal5"] .sku-block {
+  margin: 0 0 14px;
+}
+
+.series-block .section-label.spec-label {
+  margin: 0 0 8px;
+  font-size: 13px;
+}
+
 /* 方案5：成色筛选 */
 .grade-filter {
-  margin-top: 12px;
+  margin: 0 0 14px;
 }
 
 .grade-filter-chips {
@@ -339,56 +377,9 @@ button {
   box-shadow: inset 0 0 0 1px #111;
 }
 
-.grade-buy-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  min-height: 48px;
-  padding: 0 14px;
-  border-radius: 4px;
-  background: #111;
-  color: #fff;
-  text-align: left;
-}
-
-.grade-buy-btn:active {
-  background: #333;
-}
-
-.grade-buy-price {
-  flex-shrink: 0;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  font-variant-numeric: lining-nums tabular-nums;
-}
-
-.grade-buy-price em {
-  font-style: normal;
-}
-
-.grade-buy-desc {
-  flex: 1 1 auto;
-  min-width: 0;
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.78);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.grade-buy-action {
-  flex-shrink: 0;
-  margin-left: auto;
-  font-size: 15px;
-  font-weight: 700;
-}
-
 /* 类型：文字 chips，固定高度避免切换跳动 */
 .series-block {
-  margin-bottom: 4px;
+  margin-bottom: 14px;
 }
 
 .series-chips {
@@ -425,10 +416,6 @@ button {
   background: #ebebeb;
 }
 
-.series-block .section-label {
-  margin: 4px 0 6px;
-  font-size: 12px;
-}
 
 .product-row {
   display: grid;
@@ -1387,7 +1374,8 @@ button {
 
 /* 渠道条占位固定，切换新品/成色不上下跳 */
 .sheet-foot:has(#channelBar:not([hidden])),
-.sheet-foot:has(#gradeChannelBar:not([hidden])) {
+.sheet-foot:has(#gradeChannelBar:not([hidden])),
+.sheet-foot:has(#gradeBuyBar:not([hidden])) {
   min-height: calc(42px + 18px + env(safe-area-inset-bottom, 0px));
 }
 
@@ -1412,6 +1400,30 @@ button {
 .channel-bar[data-variant="grades"] {
   grid-template-columns: repeat(4, 1fr);
   gap: 4px;
+}
+
+.channel-bar[data-variant="svc"] {
+  grid-template-columns: 1.1fr 1.1fr 1.2fr;
+  gap: 4px;
+}
+
+.channel-bar[data-variant="svc"] .ch-tag {
+  font-size: 8px;
+  padding: 1px 4px;
+}
+
+.channel-bar[data-variant="svc"] .channel .ch-row {
+  padding-top: 8px;
+}
+
+.channel-bar[data-variant="svc"] .ch-sub {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.channel-bar[data-variant="svc"] .ch-price {
+  font-size: 15px;
 }
 
 .channel-bar[data-variant="grades"] .ch-price {
@@ -1449,6 +1461,18 @@ button {
 
 .channel.ch-95 {
   background: #3a3a3a;
+}
+
+.channel.ch-svc {
+  background: #3d3d3d;
+}
+
+.channel.ch-eta {
+  background: #2a2a2a;
+}
+
+.channel.ch-price {
+  background: #1f1f1f;
 }
 
 .channel.on {
@@ -2311,8 +2335,7 @@ button,
 .action-chip,
 .qty-stepper,
 .deal-banner,
-.grade-filter-chip,
-.grade-buy-btn {
+.grade-filter-chip {
   border-radius: 4px;
 }
 
