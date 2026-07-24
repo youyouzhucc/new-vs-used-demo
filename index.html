@@ -11,9 +11,8 @@
 <section class="phone phone-app" id="phone" aria-label="新品二手 Demo" data-mode="proposal5">
   <header class="page-head">
     <h1 class="page-title heiti">选购预期</h1>
-    <div class="scheme-switch cols-6" role="tablist" aria-label="方案切换">
+    <div class="scheme-switch cols-5" role="tablist" aria-label="方案切换">
       <button type="button" data-mode="current" aria-selected="false">现状<br><small>95作渠道</small></button>
-      <button type="button" data-mode="proposal" aria-selected="false">方案1<br><small>成色选档</small></button>
       <button type="button" data-mode="proposal2" aria-selected="false">方案2<br><small>单件列表</small></button>
       <button type="button" data-mode="proposal3" aria-selected="false">方案3<br><small>智能推荐</small></button>
       <button type="button" data-mode="proposal4" aria-selected="false">方案4<br><small>成色渠道</small></button>
@@ -50,7 +49,7 @@
       </div>
     </div>
 
-    <!-- 方案1/2/3：新品 / 闲置 Tab -->
+    <!-- 方案2/3：新品 / 闲置 Tab -->
     <div class="primary-tabs tabs-proposal" role="tablist" aria-label="商品类型">
       <button type="button" class="primary-tab" data-tab="new" role="tab" aria-selected="false">
         <span class="tab-title heiti">新品 · 正品现货</span>
@@ -100,28 +99,6 @@
     <div class="legacy-tabs current-only" role="tablist" aria-label="对照">
       <button type="button" class="legacy-tab on" data-legacy="new">无瑕</button>
       <button type="button" class="legacy-tab" data-legacy="used">95分</button>
-    </div>
-
-    <!-- 方案1：成色选档 -->
-    <div class="used-panel proposal1-only" id="usedPanel" hidden>
-      <div class="section-label">
-        <span>成色</span>
-        <button type="button" class="text-link grade-help-btn" id="gradeHelpBtn">成色说明 ›</button>
-      </div>
-      <div class="grade-tabs" role="tablist" aria-label="成色等级">
-        <button type="button" class="grade-tab" data-grade="SS" role="tab">
-          <strong>SS</strong><em>未使用</em>
-        </button>
-        <button type="button" class="grade-tab" data-grade="S" role="tab">
-          <strong>S</strong><em>极少穿着</em>
-        </button>
-        <button type="button" class="grade-tab on" data-grade="A" role="tab">
-          <strong>A</strong><em>轻微使用</em>
-        </button>
-        <button type="button" class="grade-tab" data-grade="B" role="tab">
-          <strong>B</strong><em>日常使用</em>
-        </button>
-      </div>
     </div>
 
     <!-- 方案2：尺码筛选 + 自选单件列表 -->
@@ -200,7 +177,7 @@
       <p class="rec-empty" id="recEmpty" hidden>该尺码暂无在售闲置，请换个尺码</p>
     </div>
 
-    <!-- 新品 / 方案1·4·5 闲置 / 现状：尺码格 -->
+    <!-- 新品 / 方案4·5 闲置 / 现状：尺码格 -->
     <div class="sku-block" id="skuBlock">
       <div class="section-label spec-label size-head">
         <span>尺码</span>
@@ -211,7 +188,7 @@
   </main>
 
   <footer class="sheet-foot">
-    <!-- 得物渠道条：现状三渠道；方案1/2/3 新品路径拆 次日达 / 品牌官方 -->
+    <!-- 得物渠道条：现状三渠道；方案2/3 新品路径拆 次日达 / 品牌官方 -->
     <div class="channel-bar" id="channelBar" data-variant="full">
       <button type="button" class="channel ch-fast on" data-channel="fast">
         <span class="ch-row">
@@ -266,7 +243,7 @@
       </button>
     </div>
 
-    <!-- 闲置路径：方案1 成色件 / 方案2·3 指定单件 -->
+    <!-- 闲置路径：方案2·3 指定单件 -->
     <div class="cta-bar" id="ctaBar" hidden>
       <button type="button" class="cta-pay" id="recPayChannel">
         使用 <b>支付宝</b> 先用后付，切换其他支付方式 <i>›</i>

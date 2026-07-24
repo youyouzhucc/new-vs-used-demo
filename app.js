@@ -185,7 +185,6 @@
   const sizeChips = $("#sizeChips");
   const recommendChips = $("#recommendChips");
   const goodsList = $("#goodsList");
-  const usedPanel = $("#usedPanel");
   const goodsPanel = $("#goodsPanel");
   const recommendPanel = $("#recommendPanel");
   const seriesBlock = $("#seriesBlock");
@@ -257,7 +256,6 @@
 
   function isProposalMode() {
     return (
-      state.mode === "proposal" ||
       state.mode === "proposal2" ||
       state.mode === "proposal3" ||
       state.mode === "proposal4" ||
@@ -399,9 +397,7 @@
     if (state.mode === "current" && state.channel === "95") return channel95Price(sz);
     if (state.mode === "current" && state.channel === "brand") return brandPrice(sz);
     if (
-      (state.mode === "proposal" ||
-        state.mode === "proposal4" ||
-        state.mode === "proposal5") &&
+      (state.mode === "proposal4" || state.mode === "proposal5") &&
       state.tab === "used"
     ) {
       return usedPrice(sz, state.grade);
@@ -613,11 +609,7 @@
         $("#ctaLabel").textContent = g
           ? `${g.delivery} · ${g.grade} · ${GRADES[g.grade].tab}`
           : "请选择在售闲置";
-      } else if (
-        state.mode === "proposal" ||
-        state.mode === "proposal4" ||
-        state.mode === "proposal5"
-      ) {
+      } else if (state.mode === "proposal4" || state.mode === "proposal5") {
         $("#ctaLabel").textContent = `约1-3天到 · ${state.grade} · ${GRADES[state.grade].tab}`;
       } else {
         $("#ctaLabel").textContent = "约1-3天到 · 轻微使用";
@@ -693,7 +685,6 @@
       btn.classList.toggle("on", btn.dataset.grade === state.grade);
     });
 
-    usedPanel.hidden = !(state.mode === "proposal" && state.tab === "used");
     goodsPanel.hidden = !isListFlow();
     recommendPanel.hidden = !isRecommendFlow();
     if (seriesBlock) seriesBlock.hidden = !isTypeFlow();

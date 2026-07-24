@@ -210,14 +210,12 @@ button {
 
 /* 现状：隐藏方案控件 */
 .sheet[data-mode="current"] .tabs-proposal,
-.sheet[data-mode="current"] .proposal1-only,
 .sheet[data-mode="current"] .proposal2-only,
 .sheet[data-mode="current"] .proposal3-only,
 .sheet[data-mode="current"] .proposal4-only,
 .sheet[data-mode="current"] .proposal5-only,
 .sheet[data-mode="current"] .type-flow-only,
 .phone[data-mode="current"] .tabs-proposal,
-.phone[data-mode="current"] .proposal1-only,
 .phone[data-mode="current"] .proposal2-only,
 .phone[data-mode="current"] .proposal3-only,
 .phone[data-mode="current"] .proposal4-only,
@@ -226,13 +224,11 @@ button {
   display: none !important;
 }
 
-/* 方案1–5：隐藏现状对照 Tab */
-.sheet[data-mode="proposal"] .current-only,
+/* 方案2–5：隐藏现状对照 Tab */
 .sheet[data-mode="proposal2"] .current-only,
 .sheet[data-mode="proposal3"] .current-only,
 .sheet[data-mode="proposal4"] .current-only,
 .sheet[data-mode="proposal5"] .current-only,
-.phone[data-mode="proposal"] .current-only,
 .phone[data-mode="proposal2"] .current-only,
 .phone[data-mode="proposal3"] .current-only,
 .phone[data-mode="proposal4"] .current-only,
@@ -241,25 +237,10 @@ button {
 }
 
 /* 各方案互斥面板 */
-.sheet[data-mode="proposal"] .proposal2-only,
-.sheet[data-mode="proposal"] .proposal3-only,
-.sheet[data-mode="proposal"] .proposal4-only,
-.sheet[data-mode="proposal"] .proposal5-only,
-.sheet[data-mode="proposal"] .type-flow-only,
-.phone[data-mode="proposal"] .proposal2-only,
-.phone[data-mode="proposal"] .proposal3-only,
-.phone[data-mode="proposal"] .proposal4-only,
-.phone[data-mode="proposal"] .proposal5-only,
-.phone[data-mode="proposal"] .type-flow-only {
-  display: none !important;
-}
-
-.sheet[data-mode="proposal2"] .proposal1-only,
 .sheet[data-mode="proposal2"] .proposal3-only,
 .sheet[data-mode="proposal2"] .proposal4-only,
 .sheet[data-mode="proposal2"] .proposal5-only,
 .sheet[data-mode="proposal2"] .type-flow-only,
-.phone[data-mode="proposal2"] .proposal1-only,
 .phone[data-mode="proposal2"] .proposal3-only,
 .phone[data-mode="proposal2"] .proposal4-only,
 .phone[data-mode="proposal2"] .proposal5-only,
@@ -267,12 +248,10 @@ button {
   display: none !important;
 }
 
-.sheet[data-mode="proposal3"] .proposal1-only,
 .sheet[data-mode="proposal3"] .proposal2-only,
 .sheet[data-mode="proposal3"] .proposal4-only,
 .sheet[data-mode="proposal3"] .proposal5-only,
 .sheet[data-mode="proposal3"] .type-flow-only,
-.phone[data-mode="proposal3"] .proposal1-only,
 .phone[data-mode="proposal3"] .proposal2-only,
 .phone[data-mode="proposal3"] .proposal4-only,
 .phone[data-mode="proposal3"] .proposal5-only,
@@ -280,22 +259,18 @@ button {
   display: none !important;
 }
 
-.sheet[data-mode="proposal4"] .proposal1-only,
 .sheet[data-mode="proposal4"] .proposal2-only,
 .sheet[data-mode="proposal4"] .proposal3-only,
 .sheet[data-mode="proposal4"] .proposal5-only,
-.phone[data-mode="proposal4"] .proposal1-only,
 .phone[data-mode="proposal4"] .proposal2-only,
 .phone[data-mode="proposal4"] .proposal3-only,
 .phone[data-mode="proposal4"] .proposal5-only {
   display: none !important;
 }
 
-.sheet[data-mode="proposal5"] .proposal1-only,
 .sheet[data-mode="proposal5"] .proposal2-only,
 .sheet[data-mode="proposal5"] .proposal3-only,
 .sheet[data-mode="proposal5"] .proposal4-only,
-.phone[data-mode="proposal5"] .proposal1-only,
 .phone[data-mode="proposal5"] .proposal2-only,
 .phone[data-mode="proposal5"] .proposal3-only,
 .phone[data-mode="proposal5"] .proposal4-only {
