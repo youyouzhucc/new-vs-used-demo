@@ -332,7 +332,15 @@
       const svcEl = $("#gradeBuySvc");
       const etaEl = $("#gradeBuyEta");
       if (priceEl) priceEl.textContent = `¥${price}`;
-      if (svcEl) svcEl.textContent = "七天无理由";
+      if (svcEl) {
+        const qual =
+          state.grade === "SS" || state.grade === "S"
+            ? "品牌直发"
+            : state.grade === "A"
+              ? "平台已验"
+              : "闲置直发";
+        svcEl.textContent = qual;
+      }
       if (etaEl) etaEl.textContent = "约1-3天到";
     }
 
