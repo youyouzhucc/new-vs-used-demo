@@ -75,16 +75,25 @@
       </div>
     </div>
 
-    <!-- 方案5：成色筛选（类型下方） -->
+    <!-- 方案5：成色筛选（类型下方，带说明与成色释义） -->
     <div class="grade-filter proposal5-only" id="gradeFilter" hidden>
       <div class="section-label spec-label">
         <span>成色</span>
+        <button type="button" class="text-link grade-help-btn">成色说明 ›</button>
       </div>
-      <div class="grade-filter-chips" id="gradeFilterChips" role="tablist" aria-label="成色筛选">
-        <button type="button" class="grade-filter-chip" data-grade="SS" role="tab">SS</button>
-        <button type="button" class="grade-filter-chip" data-grade="S" role="tab">S</button>
-        <button type="button" class="grade-filter-chip on" data-grade="A" role="tab">A</button>
-        <button type="button" class="grade-filter-chip" data-grade="B" role="tab">B</button>
+      <div class="grade-tabs" id="gradeFilterChips" role="tablist" aria-label="成色筛选">
+        <button type="button" class="grade-tab" data-grade="SS" role="tab">
+          <strong>SS</strong><em>未使用</em>
+        </button>
+        <button type="button" class="grade-tab" data-grade="S" role="tab">
+          <strong>S</strong><em>极少穿着</em>
+        </button>
+        <button type="button" class="grade-tab on" data-grade="A" role="tab">
+          <strong>A</strong><em>轻微使用</em>
+        </button>
+        <button type="button" class="grade-tab" data-grade="B" role="tab">
+          <strong>B</strong><em>日常使用</em>
+        </button>
       </div>
     </div>
 
@@ -97,7 +106,7 @@
     <div class="used-panel proposal1-only" id="usedPanel" hidden>
       <div class="section-label">
         <span>成色</span>
-        <button type="button" class="text-link" id="gradeHelpBtn">成色说明 ›</button>
+        <button type="button" class="text-link grade-help-btn" id="gradeHelpBtn">成色说明 ›</button>
       </div>
       <div class="grade-tabs" role="tablist" aria-label="成色等级">
         <button type="button" class="grade-tab" data-grade="SS" role="tab">

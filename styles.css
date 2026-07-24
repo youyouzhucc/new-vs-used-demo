@@ -317,7 +317,7 @@ button {
 .sheet[data-mode="proposal4"] .size-head,
 .sheet[data-mode="proposal5"] .size-head {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: baseline;
   flex-wrap: wrap;
   gap: 8px;
@@ -325,6 +325,13 @@ button {
   font-size: 13px;
   font-weight: 600;
   color: #111;
+}
+
+.grade-filter .spec-label .text-link {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+  color: #666;
 }
 
 .spec-label .size-tip,
@@ -348,35 +355,36 @@ button {
   font-size: 13px;
 }
 
-/* 方案5：成色筛选 */
+/* 方案5：成色筛选（对齐方案1成色卡） */
 .grade-filter {
   margin: 0 0 14px;
 }
 
-.grade-filter-chips {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+.grade-filter .grade-tabs {
+  margin: 0;
 }
 
-.grade-filter-chip {
-  height: 26px;
-  border-radius: 4px;
-  border: 1px solid transparent;
-  background: #f5f5f5;
-  font-size: 12px;
-  font-weight: 500;
-  color: #333;
-  text-align: center;
-  line-height: 24px;
+.grade-filter .grade-tab {
+  min-height: 48px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
 }
 
-.grade-filter-chip.on {
-  border-color: #111;
-  background: #f0f0f0;
+.grade-filter .grade-tab strong {
+  font-size: 14px;
+  font-weight: 700;
   color: #111;
-  font-weight: 500;
-  box-shadow: none;
+}
+
+.grade-filter .grade-tab em {
+  font-size: 10px;
+  color: #888;
+}
+
+.grade-filter .grade-tab.on {
+  border-color: #111;
+  background: #fff;
+  box-shadow: 0 0 0 1px #111;
 }
 
 /* 类型：文字 chips，固定高度避免切换跳动 */
@@ -2337,9 +2345,6 @@ button,
 .action-chip,
 .qty-stepper,
 .deal-banner,
-.grade-filter-chip {
-  border-radius: 4px;
-}
 
 .channel .ch-tag {
   border-radius: 0 4px 0 4px;

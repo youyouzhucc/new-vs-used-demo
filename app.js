@@ -708,7 +708,7 @@
     }
 
     if (gradeFilterChips) {
-      $$(".grade-filter-chip", gradeFilterChips).forEach((btn) => {
+      $$(".grade-tab", gradeFilterChips).forEach((btn) => {
         const on = btn.dataset.grade === state.grade;
         btn.classList.toggle("on", on);
         btn.setAttribute("aria-selected", String(on));
@@ -848,9 +848,9 @@
 
   if (gradeFilterChips) {
     gradeFilterChips.addEventListener("click", (e) => {
-      const chip = e.target.closest(".grade-filter-chip");
-      if (!chip) return;
-      state.grade = chip.dataset.grade;
+      const tab = e.target.closest(".grade-tab");
+      if (!tab) return;
+      state.grade = tab.dataset.grade;
       syncUI();
     });
   }
@@ -974,7 +974,9 @@
     });
   });
 
-  $("#gradeHelpBtn").addEventListener("click", openGradeSheet);
+  $$(".grade-help-btn").forEach((btn) => {
+    btn.addEventListener("click", openGradeSheet);
+  });
   const reportEntry = $("#reportEntry");
   if (reportEntry) reportEntry.addEventListener("click", openReport);
   $("#reportBack").addEventListener("click", closeReport);
