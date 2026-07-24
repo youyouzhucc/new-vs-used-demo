@@ -263,62 +263,222 @@ button {
   display: none !important;
 }
 
+/* 方案4：隐藏双 Tab，改用「系列」chips */
+.sheet[data-mode="proposal4"] .tabs-proposal,
+.phone[data-mode="proposal4"] .tabs-proposal {
+  display: none !important;
+}
+
+/* 类型：文字 chips，固定高度避免切换跳动 */
+.series-block {
+  margin-bottom: 4px;
+}
+
+.series-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 10px;
+}
+
+.series-chip {
+  flex: 0 0 auto;
+  height: 26px;
+  min-height: 26px;
+  max-height: 26px;
+  padding: 0 10px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background: #f5f5f5;
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  line-height: 24px;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.series-chip.on {
+  border-color: #111;
+  background: #f0f0f0;
+  color: #111;
+}
+
+.series-chip:active {
+  background: #ebebeb;
+}
+
+.series-block .section-label {
+  margin: 4px 0 6px;
+  font-size: 12px;
+}
+
 .product-row {
   display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 12px;
-  align-items: start;
-  margin-bottom: 14px;
+  grid-template-columns: 72px 1fr;
+  gap: 10px;
+  align-items: stretch;
+  margin-bottom: 12px;
+  min-height: 88px;
 }
 
 .thumb {
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 88px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 4px;
   background: #f0f0f0;
+  border: 1px solid #ececec;
+  filter: grayscale(1);
+}
+
+.product-meta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: space-between;
 }
 
 .price-line {
   display: flex;
   align-items: baseline;
-  gap: 2px;
-  flex-wrap: wrap;
+  gap: 4px;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+
+.dw-badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 14px;
+  padding: 0 3px;
+  margin-right: 2px;
+  border-radius: 2px;
+  background: #111;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  transform: translateY(-1px);
 }
 
 .yen {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
 }
 
 .price {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1;
   font-variant-numeric: lining-nums tabular-nums;
 }
 
-.save {
-  margin-left: 8px;
+.price-aside {
+  margin-left: 4px;
   font-size: 11px;
-  font-weight: 600;
-  color: #555;
-  background: #f0f0f0;
-  padding: 2px 6px;
-  border-radius: 4px;
+  color: #999;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
-.product-name {
-  margin-top: 6px;
-  font-size: 12px;
+.save {
+  margin-left: 4px;
+  font-size: 11px;
+  font-weight: 500;
   color: #666;
+  white-space: nowrap;
 }
 
-.promo-tags {
+.deal-banner {
   display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  min-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #f2f2f2;
+  color: #555;
+  font-size: 11px;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.deal-banner i {
+  font-style: normal;
+  color: #bbb;
+}
+
+.deal-banner em {
+  margin-left: auto;
+  font-style: normal;
+  color: #999;
+}
+
+.product-actions {
+  display: flex;
+  align-items: center;
   gap: 6px;
-  margin-top: 8px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  border-radius: 4px;
+  background: #f3f3f3;
+  flex-shrink: 0;
+}
+
+.qty-btn {
+  width: 24px;
+  height: 24px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.qty-num {
+  min-width: 18px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #111;
+}
+
+.action-chip {
+  flex: 0 0 auto;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  font-size: 11px;
+  color: #555;
+  white-space: nowrap;
+  line-height: 22px;
+}
+
+.action-chip.wide {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.action-chip i {
+  font-style: normal;
+  color: #999;
 }
 
 .tag {
@@ -572,6 +732,7 @@ button {
   color: #666;
   line-height: 1.4;
 }
+
 
 .recommend-panel {
   margin-bottom: 4px;
@@ -1039,12 +1200,15 @@ button {
 .size-cell {
   border: 1.5px solid #e8e8e8;
   border-radius: 4px;
-  padding: 8px 2px;
+  padding: 6px 2px;
   text-align: center;
   background: #fff;
-  min-height: 46px;
-  /* 固定边框占位，避免选中时布局跳动 */
+  height: 48px;
+  min-height: 48px;
+  max-height: 48px;
+  /* 固定高度，切换选中/价格不跳动 */
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .size-cell strong {
@@ -1082,12 +1246,20 @@ button {
   background: #fff;
 }
 
+/* 渠道条占位固定，切换新品/成色不上下跳 */
+.sheet-foot:has(#channelBar:not([hidden])),
+.sheet-foot:has(#gradeChannelBar:not([hidden])) {
+  min-height: calc(42px + 18px + env(safe-area-inset-bottom, 0px));
+}
+
 /* 得物渠道条：矮扁比例 */
 .channel-bar {
   display: grid;
   grid-template-columns: 1fr 1.2fr 1.25fr;
   gap: 4px;
   align-items: stretch;
+  min-height: 42px;
+  height: 42px;
 }
 
 .channel-bar[data-variant="new"] {
@@ -1995,7 +2167,11 @@ button,
 .cta-pay,
 .pay-main,
 .grade-chip,
-.sheet-close {
+.sheet-close,
+.series-chip,
+.action-chip,
+.qty-stepper,
+.deal-banner {
   border-radius: 4px;
 }
 

@@ -25,14 +25,26 @@
       <img class="thumb" src="assets/sneaker.jpg" alt="" />
       <div class="product-meta">
         <div class="price-line">
+          <span class="dw-badge heiti" aria-hidden="true">得物</span>
           <span class="yen">¥</span>
           <strong class="price heiti" id="headerPrice">515</strong>
+          <span class="price-aside" id="priceAside">仅剩2件 比发售价低¥175</span>
           <span class="save" id="saveTag" hidden>比新品省 ¥147</span>
         </div>
-        <p class="product-name">ASICS Gel-Sonoma 15-50</p>
-        <div class="promo-tags" id="promoTags">
-          <span class="tag">满减</span>
-          <span class="tag soft">包邮</span>
+        <button type="button" class="deal-banner" id="dealBanner">
+          <span>已享最佳优惠</span>
+          <i>|</i>
+          <span id="dealSave">限时补贴已省¥25</span>
+          <em>›</em>
+        </button>
+        <div class="product-actions" id="promoTags">
+          <div class="qty-stepper" aria-label="数量">
+            <button type="button" class="qty-btn" data-qty="-1" aria-label="减少">−</button>
+            <span class="qty-num" id="qtyNum">1</span>
+            <button type="button" class="qty-btn" data-qty="1" aria-label="增加">+</button>
+          </div>
+          <button type="button" class="action-chip">刻字 ›</button>
+          <button type="button" class="action-chip wide">以旧换新 最高抵¥800 <i>⇄</i></button>
         </div>
       </div>
     </div>
@@ -45,6 +57,21 @@
       <button type="button" class="primary-tab on" data-tab="used" role="tab" aria-selected="true">
         <span class="tab-title heiti">95分 · 闲置商品</span>
       </button>
+    </div>
+
+    <!-- 方案4：类型选择（文字 chips，无图） -->
+    <div class="series-block proposal4-only" id="seriesBlock" hidden>
+      <div class="section-label">
+        <span>类型</span>
+      </div>
+      <div class="series-chips" id="seriesChips" role="tablist" aria-label="商品类型">
+        <button type="button" class="series-chip" data-tab="new" role="tab" aria-selected="false">
+          新品 · 正品现货
+        </button>
+        <button type="button" class="series-chip on" data-tab="used" role="tab" aria-selected="true">
+          95分 · 闲置商品
+        </button>
+      </div>
     </div>
 
     <div class="legacy-tabs current-only" role="tablist" aria-label="对照">
@@ -164,9 +191,9 @@
       <p class="rec-empty" id="recEmpty" hidden>该尺码暂无在售闲置，请换个尺码</p>
     </div>
 
-    <!-- 方案4：成色即渠道提示 -->
-    <p class="goods-flow-tip proposal4-only" id="gradeChannelTip" hidden>
-      四个成色即购买渠道，选尺码后点底部渠道进入确认订单
+    <!-- 方案4：类型路径提示（始终占位，避免切换跳动） -->
+    <p class="goods-flow-tip proposal4-only" id="gradeChannelTip">
+      先选类型与尺码，再点底部渠道进入确认订单
     </p>
 
     <!-- 新品 / 方案1·4 闲置 / 现状：尺码格 -->
@@ -216,19 +243,19 @@
         </span>
       </button>
       <button type="button" class="channel" data-grade="S">
-        <em class="ch-tag">S · 极少穿着</em>
+        <em class="ch-tag">S · 极少穿</em>
         <span class="ch-row">
           <strong class="heiti ch-price" data-grade-price="S">¥422</strong>
         </span>
       </button>
       <button type="button" class="channel on" data-grade="A">
-        <em class="ch-tag">A · 轻微使用</em>
+        <em class="ch-tag">A · 轻微用</em>
         <span class="ch-row">
           <strong class="heiti ch-price" data-grade-price="A">¥371</strong>
         </span>
       </button>
       <button type="button" class="channel" data-grade="B">
-        <em class="ch-tag">B · 日常使用</em>
+        <em class="ch-tag">B · 日常用</em>
         <span class="ch-row">
           <strong class="heiti ch-price" data-grade-price="B">¥309</strong>
         </span>

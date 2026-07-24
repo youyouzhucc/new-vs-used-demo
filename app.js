@@ -188,6 +188,8 @@
   const usedPanel = $("#usedPanel");
   const goodsPanel = $("#goodsPanel");
   const recommendPanel = $("#recommendPanel");
+  const seriesBlock = $("#seriesBlock");
+  const seriesChips = $("#seriesChips");
   const skuBlock = $("#skuBlock");
   const channelBar = $("#channelBar");
   const gradeChannelBar = $("#gradeChannelBar");
@@ -539,13 +541,24 @@
     $("#ctaPrice").textContent = String(price || "--");
 
     const save = $("#saveTag");
+    const aside = $("#priceAside");
+    const dealSave = $("#dealSave");
+    const refSize = isGoodsBound() && selectedGoods() ? selectedGoods().size : state.size;
+    const launchGap = Math.max(0, 690 - (price || 0));
+    const subsidy = used ? Math.max(10, Math.round((newPrice(refSize) - (price || 0)) * 0.15)) : 25;
+
+    if (aside) {
+      aside.hidden = false;
+      aside.textContent = used
+        ? `仅剩1件 比新品低¥${Math.max(0, newPrice(refSize) - (price || 0))}`
+        : `仅剩2件 比发售价低¥${launchGap}`;
+    }
+    if (dealSave) dealSave.textContent = `限时补贴已省¥${subsidy}`;
+
     if (used && price) {
-      const refSize = isGoodsBound() && selectedGoods() ? selectedGoods().size : state.size;
       const diff = newPrice(refSize) - price;
-      save.hidden = false;
+      save.hidden = true;
       save.textContent = `比新品省 ¥${diff}`;
-      $("#promoTags").hidden = true;
-      $("#promoTags").innerHTML = "";
       if (isRecommendFlow()) {
         const g = selectedGoods();
         $("#ctaLabel").textContent = g
@@ -563,11 +576,6 @@
       }
     } else {
       save.hidden = true;
-      $("#promoTags").hidden = false;
-      $("#promoTags").innerHTML = `
-        <span class="tag">满减</span>
-        <span class="tag soft">包邮</span>
-      `;
       if (state.channel === "brand") {
         $("#ctaLabel").textContent = "品牌官方";
       } else {
@@ -640,7 +648,8 @@
     usedPanel.hidden = !(state.mode === "proposal" && state.tab === "used");
     goodsPanel.hidden = !isListFlow();
     recommendPanel.hidden = !isRecommendFlow();
-    if (gradeChannelTip) gradeChannelTip.hidden = !isGradeChannelFlow();
+    if (seriesBlock) seriesBlock.hidden = state.mode !== "proposal4";
+    if (gradeChannelTip) gradeChannelTip.hidden = state.mode !== "proposal4";
     skuBlock.hidden = isListFlow() || isRecommendFlow();
 
     if (isProposalMode() && state.tab === "new" && state.channel === "95") {
@@ -648,6 +657,14 @@
     }
     if (isProposalMode() && state.tab === "used") {
       state.channel = "95";
+    }
+
+    if (seriesChips) {
+      $$(".series-chip", seriesChips).forEach((btn) => {
+        const on = btn.dataset.tab === state.tab;
+        btn.classList.toggle("on", on);
+        btn.setAttribute("aria-selected", String(on));
+      });
     }
 
     if (isListFlow()) {
@@ -739,20 +756,32 @@
     });
   });
 
+  function applyTab(tab) {
+    state.tab = tab;
+    state.channel = tab === "used" ? "95" : "fast";
+    if (tab === "used" && state.mode === "proposal2") {
+      state.filterAll = true;
+      state.filterSizes.clear();
+    }
+    if (tab === "used" && state.mode === "proposal3") {
+      state.recIndex = 0;
+    }
+    syncUI();
+  }
+
   $$(".primary-tab").forEach((btn) => {
     btn.addEventListener("click", () => {
-      state.tab = btn.dataset.tab;
-      state.channel = state.tab === "used" ? "95" : "fast";
-      if (state.tab === "used" && state.mode === "proposal2") {
-        state.filterAll = true;
-        state.filterSizes.clear();
-      }
-      if (state.tab === "used" && state.mode === "proposal3") {
-        state.recIndex = 0;
-      }
-      syncUI();
+      applyTab(btn.dataset.tab);
     });
   });
+
+  if (seriesChips) {
+    seriesChips.addEventListener("click", (e) => {
+      const chip = e.target.closest(".series-chip");
+      if (!chip) return;
+      applyTab(chip.dataset.tab);
+    });
+  }
 
   $$(".legacy-tab").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -899,6 +928,15 @@
 
   gradeSheet.addEventListener("click", (e) => {
     if (e.target === gradeSheet) gradeSheet.close();
+  });
+
+  const qtyNum = $("#qtyNum");
+  $$(".qty-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (!qtyNum) return;
+      const next = Math.max(1, Math.min(9, Number(qtyNum.textContent || 1) + Number(btn.dataset.qty)));
+      qtyNum.textContent = String(next);
+    });
   });
 
   syncUI();
