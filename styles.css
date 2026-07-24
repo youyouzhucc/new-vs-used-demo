@@ -135,27 +135,35 @@ button {
   grid-template-columns: repeat(5, 1fr);
 }
 
+.scheme-switch.cols-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
 .scheme-switch.cols-4 button,
-.scheme-switch.cols-5 button {
+.scheme-switch.cols-5 button,
+.scheme-switch.cols-6 button {
   font-size: 12px;
   min-height: 48px;
   padding: 6px 2px;
 }
 
-.scheme-switch.cols-5 button {
-  font-size: 11px;
+.scheme-switch.cols-5 button,
+.scheme-switch.cols-6 button {
+  font-size: 10px;
   min-height: 50px;
   padding: 6px 1px;
 }
 
 .scheme-switch.cols-4 button small,
-.scheme-switch.cols-5 button small {
-  font-size: 10px;
+.scheme-switch.cols-5 button small,
+.scheme-switch.cols-6 button small {
+  font-size: 9px;
 }
 
-.scheme-switch.cols-5 button small {
-  font-size: 10px;
-  letter-spacing: -0.01em;
+.scheme-switch.cols-5 button small,
+.scheme-switch.cols-6 button small {
+  font-size: 9px;
+  letter-spacing: -0.02em;
 }
 
 .scheme-switch button {
@@ -206,23 +214,29 @@ button {
 .sheet[data-mode="current"] .proposal2-only,
 .sheet[data-mode="current"] .proposal3-only,
 .sheet[data-mode="current"] .proposal4-only,
+.sheet[data-mode="current"] .proposal5-only,
+.sheet[data-mode="current"] .type-flow-only,
 .phone[data-mode="current"] .tabs-proposal,
 .phone[data-mode="current"] .proposal1-only,
 .phone[data-mode="current"] .proposal2-only,
 .phone[data-mode="current"] .proposal3-only,
-.phone[data-mode="current"] .proposal4-only {
+.phone[data-mode="current"] .proposal4-only,
+.phone[data-mode="current"] .proposal5-only,
+.phone[data-mode="current"] .type-flow-only {
   display: none !important;
 }
 
-/* 方案1–4：隐藏现状对照 Tab */
+/* 方案1–5：隐藏现状对照 Tab */
 .sheet[data-mode="proposal"] .current-only,
 .sheet[data-mode="proposal2"] .current-only,
 .sheet[data-mode="proposal3"] .current-only,
 .sheet[data-mode="proposal4"] .current-only,
+.sheet[data-mode="proposal5"] .current-only,
 .phone[data-mode="proposal"] .current-only,
 .phone[data-mode="proposal2"] .current-only,
 .phone[data-mode="proposal3"] .current-only,
-.phone[data-mode="proposal4"] .current-only {
+.phone[data-mode="proposal4"] .current-only,
+.phone[data-mode="proposal5"] .current-only {
   display: none !important;
 }
 
@@ -230,43 +244,146 @@ button {
 .sheet[data-mode="proposal"] .proposal2-only,
 .sheet[data-mode="proposal"] .proposal3-only,
 .sheet[data-mode="proposal"] .proposal4-only,
+.sheet[data-mode="proposal"] .proposal5-only,
+.sheet[data-mode="proposal"] .type-flow-only,
 .phone[data-mode="proposal"] .proposal2-only,
 .phone[data-mode="proposal"] .proposal3-only,
-.phone[data-mode="proposal"] .proposal4-only {
+.phone[data-mode="proposal"] .proposal4-only,
+.phone[data-mode="proposal"] .proposal5-only,
+.phone[data-mode="proposal"] .type-flow-only {
   display: none !important;
 }
 
 .sheet[data-mode="proposal2"] .proposal1-only,
 .sheet[data-mode="proposal2"] .proposal3-only,
 .sheet[data-mode="proposal2"] .proposal4-only,
+.sheet[data-mode="proposal2"] .proposal5-only,
+.sheet[data-mode="proposal2"] .type-flow-only,
 .phone[data-mode="proposal2"] .proposal1-only,
 .phone[data-mode="proposal2"] .proposal3-only,
-.phone[data-mode="proposal2"] .proposal4-only {
+.phone[data-mode="proposal2"] .proposal4-only,
+.phone[data-mode="proposal2"] .proposal5-only,
+.phone[data-mode="proposal2"] .type-flow-only {
   display: none !important;
 }
 
 .sheet[data-mode="proposal3"] .proposal1-only,
 .sheet[data-mode="proposal3"] .proposal2-only,
 .sheet[data-mode="proposal3"] .proposal4-only,
+.sheet[data-mode="proposal3"] .proposal5-only,
+.sheet[data-mode="proposal3"] .type-flow-only,
 .phone[data-mode="proposal3"] .proposal1-only,
 .phone[data-mode="proposal3"] .proposal2-only,
-.phone[data-mode="proposal3"] .proposal4-only {
+.phone[data-mode="proposal3"] .proposal4-only,
+.phone[data-mode="proposal3"] .proposal5-only,
+.phone[data-mode="proposal3"] .type-flow-only {
   display: none !important;
 }
 
 .sheet[data-mode="proposal4"] .proposal1-only,
 .sheet[data-mode="proposal4"] .proposal2-only,
 .sheet[data-mode="proposal4"] .proposal3-only,
+.sheet[data-mode="proposal4"] .proposal5-only,
 .phone[data-mode="proposal4"] .proposal1-only,
 .phone[data-mode="proposal4"] .proposal2-only,
-.phone[data-mode="proposal4"] .proposal3-only {
+.phone[data-mode="proposal4"] .proposal3-only,
+.phone[data-mode="proposal4"] .proposal5-only {
   display: none !important;
 }
 
-/* 方案4：隐藏双 Tab，改用「系列」chips */
-.sheet[data-mode="proposal4"] .tabs-proposal,
-.phone[data-mode="proposal4"] .tabs-proposal {
+.sheet[data-mode="proposal5"] .proposal1-only,
+.sheet[data-mode="proposal5"] .proposal2-only,
+.sheet[data-mode="proposal5"] .proposal3-only,
+.sheet[data-mode="proposal5"] .proposal4-only,
+.phone[data-mode="proposal5"] .proposal1-only,
+.phone[data-mode="proposal5"] .proposal2-only,
+.phone[data-mode="proposal5"] .proposal3-only,
+.phone[data-mode="proposal5"] .proposal4-only {
   display: none !important;
+}
+
+/* 方案4/5：隐藏双 Tab，改用「类型」chips */
+.sheet[data-mode="proposal4"] .tabs-proposal,
+.sheet[data-mode="proposal5"] .tabs-proposal,
+.phone[data-mode="proposal4"] .tabs-proposal,
+.phone[data-mode="proposal5"] .tabs-proposal {
+  display: none !important;
+}
+
+/* 方案5：成色筛选 */
+.grade-filter {
+  margin-top: 12px;
+}
+
+.grade-filter-chips {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.grade-filter-chip {
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+  background: #f5f5f5;
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+}
+
+.grade-filter-chip.on {
+  border-color: #111;
+  background: #fff;
+  color: #111;
+  box-shadow: inset 0 0 0 1px #111;
+}
+
+.grade-buy-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 4px;
+  background: #111;
+  color: #fff;
+  text-align: left;
+}
+
+.grade-buy-btn:active {
+  background: #333;
+}
+
+.grade-buy-price {
+  flex-shrink: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.grade-buy-price em {
+  font-style: normal;
+}
+
+.grade-buy-desc {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.78);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.grade-buy-action {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-size: 15px;
+  font-weight: 700;
 }
 
 /* 类型：文字 chips，固定高度避免切换跳动 */
@@ -2193,7 +2310,9 @@ button,
 .series-chip,
 .action-chip,
 .qty-stepper,
-.deal-banner {
+.deal-banner,
+.grade-filter-chip,
+.grade-buy-btn {
   border-radius: 4px;
 }
 

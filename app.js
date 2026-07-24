@@ -165,7 +165,7 @@
   const GRADE_WEIGHT = { A: 4, S: 3, SS: 3, B: 1 };
 
   const state = {
-    mode: "proposal3",
+    mode: "proposal5",
     tab: "used",
     grade: "A",
     size: 44,
@@ -190,6 +190,9 @@
   const recommendPanel = $("#recommendPanel");
   const seriesBlock = $("#seriesBlock");
   const seriesChips = $("#seriesChips");
+  const gradeFilter = $("#gradeFilter");
+  const gradeFilterChips = $("#gradeFilterChips");
+  const gradeBuyBtn = $("#gradeBuyBtn");
   const skuBlock = $("#skuBlock");
   const channelBar = $("#channelBar");
   const gradeChannelBar = $("#gradeChannelBar");
@@ -257,13 +260,23 @@
       state.mode === "proposal" ||
       state.mode === "proposal2" ||
       state.mode === "proposal3" ||
-      state.mode === "proposal4"
+      state.mode === "proposal4" ||
+      state.mode === "proposal5"
     );
+  }
+
+  function isTypeFlow() {
+    return state.mode === "proposal4" || state.mode === "proposal5";
   }
 
   /** 方案4：成色即渠道 */
   function isGradeChannelFlow() {
     return state.mode === "proposal4" && state.tab === "used";
+  }
+
+  /** 方案5：成色筛选 + 底部购买 */
+  function isGradeFilterFlow() {
+    return state.mode === "proposal5" && state.tab === "used";
   }
 
   function isUsedContext() {
@@ -299,16 +312,28 @@
     return newPrice(state.size);
   }
 
-  /** 底部：现状三渠道 / 方案新品双渠道 / 方案4成色渠道 / 其余闲置 CTA */
+  /** 底部：现状三渠道 / 方案新品双渠道 / 方案4成色渠道 / 方案5购买条 / 其余闲置 CTA */
   function syncFooter() {
     const showNewChannels =
       state.mode === "current" || (isProposalMode() && state.tab === "new");
     const showGradeChannels = isGradeChannelFlow();
-    const showCta = isProposalMode() && state.tab === "used" && !showGradeChannels;
+    const showGradeBuy = isGradeFilterFlow();
+    const showCta =
+      isProposalMode() && state.tab === "used" && !showGradeChannels && !showGradeBuy;
 
     channelBar.hidden = !showNewChannels;
     gradeChannelBar.hidden = !showGradeChannels;
     ctaBar.hidden = !showCta;
+    if (gradeBuyBtn) gradeBuyBtn.hidden = !showGradeBuy;
+
+    if (showGradeBuy) {
+      const g = GRADES[state.grade] || GRADES.A;
+      const price = usedPrice(state.size, state.grade);
+      const priceEl = $("#gradeBuyPrice");
+      const descEl = $("#gradeBuyDesc");
+      if (priceEl) priceEl.textContent = String(price);
+      if (descEl) descEl.textContent = `${state.grade} · ${g.tab}`;
+    }
 
     if (showNewChannels) {
       channelBar.dataset.variant = state.mode === "current" ? "full" : "new";
@@ -364,7 +389,12 @@
   function priceForSize(sz) {
     if (state.mode === "current" && state.channel === "95") return channel95Price(sz);
     if (state.mode === "current" && state.channel === "brand") return brandPrice(sz);
-    if ((state.mode === "proposal" || state.mode === "proposal4") && state.tab === "used") {
+    if (
+      (state.mode === "proposal" ||
+        state.mode === "proposal4" ||
+        state.mode === "proposal5") &&
+      state.tab === "used"
+    ) {
       return usedPrice(sz, state.grade);
     }
     if (isProposalMode() && state.tab === "new" && state.channel === "brand") {
@@ -574,7 +604,11 @@
         $("#ctaLabel").textContent = g
           ? `${g.delivery} · ${g.grade} · ${GRADES[g.grade].tab}`
           : "请选择在售闲置";
-      } else if (state.mode === "proposal" || state.mode === "proposal4") {
+      } else if (
+        state.mode === "proposal" ||
+        state.mode === "proposal4" ||
+        state.mode === "proposal5"
+      ) {
         $("#ctaLabel").textContent = `约1-3天到 · ${state.grade} · ${GRADES[state.grade].tab}`;
       } else {
         $("#ctaLabel").textContent = "约1-3天到 · 轻微使用";
@@ -653,7 +687,8 @@
     usedPanel.hidden = !(state.mode === "proposal" && state.tab === "used");
     goodsPanel.hidden = !isListFlow();
     recommendPanel.hidden = !isRecommendFlow();
-    if (seriesBlock) seriesBlock.hidden = state.mode !== "proposal4";
+    if (seriesBlock) seriesBlock.hidden = !isTypeFlow();
+    if (gradeFilter) gradeFilter.hidden = !isGradeFilterFlow();
     skuBlock.hidden = isListFlow() || isRecommendFlow();
 
     if (isProposalMode() && state.tab === "new" && state.channel === "95") {
@@ -666,6 +701,14 @@
     if (seriesChips) {
       $$(".series-chip", seriesChips).forEach((btn) => {
         const on = btn.dataset.tab === state.tab;
+        btn.classList.toggle("on", on);
+        btn.setAttribute("aria-selected", String(on));
+      });
+    }
+
+    if (gradeFilterChips) {
+      $$(".grade-filter-chip", gradeFilterChips).forEach((btn) => {
+        const on = btn.dataset.grade === state.grade;
         btn.classList.toggle("on", on);
         btn.setAttribute("aria-selected", String(on));
       });
@@ -801,6 +844,19 @@
       syncUI();
     });
   });
+
+  if (gradeFilterChips) {
+    gradeFilterChips.addEventListener("click", (e) => {
+      const chip = e.target.closest(".grade-filter-chip");
+      if (!chip) return;
+      state.grade = chip.dataset.grade;
+      syncUI();
+    });
+  }
+
+  if (gradeBuyBtn) {
+    gradeBuyBtn.addEventListener("click", openCheckout);
+  }
 
   sizeGrid.addEventListener("click", (e) => {
     const cell = e.target.closest(".size-cell");

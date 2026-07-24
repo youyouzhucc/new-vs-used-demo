@@ -8,19 +8,20 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<section class="phone phone-app" id="phone" aria-label="新品二手 Demo" data-mode="proposal3">
+<section class="phone phone-app" id="phone" aria-label="新品二手 Demo" data-mode="proposal5">
   <header class="page-head">
     <h1 class="page-title heiti">选购预期</h1>
-    <div class="scheme-switch cols-5" role="tablist" aria-label="方案切换">
+    <div class="scheme-switch cols-6" role="tablist" aria-label="方案切换">
       <button type="button" data-mode="current" aria-selected="false">现状<br><small>95作渠道</small></button>
       <button type="button" data-mode="proposal" aria-selected="false">方案1<br><small>成色选档</small></button>
       <button type="button" data-mode="proposal2" aria-selected="false">方案2<br><small>单件列表</small></button>
-      <button type="button" class="on" data-mode="proposal3" aria-selected="true">方案3<br><small>智能推荐</small></button>
+      <button type="button" data-mode="proposal3" aria-selected="false">方案3<br><small>智能推荐</small></button>
       <button type="button" data-mode="proposal4" aria-selected="false">方案4<br><small>成色渠道</small></button>
+      <button type="button" class="on" data-mode="proposal5" aria-selected="true">方案5<br><small>成色筛选</small></button>
     </div>
   </header>
 
-  <main class="sheet" id="sheet" data-mode="proposal3" data-tab="used">
+  <main class="sheet" id="sheet" data-mode="proposal5" data-tab="used">
     <div class="product-row">
       <img class="thumb" src="assets/sneaker.jpg" alt="" />
       <div class="product-meta">
@@ -59,8 +60,8 @@
       </button>
     </div>
 
-    <!-- 方案4：类型选择（文字 chips，无图） -->
-    <div class="series-block proposal4-only" id="seriesBlock" hidden>
+    <!-- 方案4/5：类型选择（文字 chips，无图） -->
+    <div class="series-block type-flow-only" id="seriesBlock" hidden>
       <div class="section-label">
         <span>类型</span>
       </div>
@@ -177,13 +178,26 @@
       <p class="rec-empty" id="recEmpty" hidden>该尺码暂无在售闲置，请换个尺码</p>
     </div>
 
-    <!-- 新品 / 方案1·4 闲置 / 现状：尺码格 -->
+    <!-- 新品 / 方案1·4·5 闲置 / 现状：尺码格 -->
     <div class="sku-block" id="skuBlock">
       <div class="size-head">
         <span class="heiti">尺码</span>
         <span class="size-tip">因该商品尺码偏小半码，推荐 43 码</span>
       </div>
       <div class="size-grid" id="sizeGrid" role="listbox" aria-label="选择尺码"></div>
+    </div>
+
+    <!-- 方案5：成色筛选 -->
+    <div class="grade-filter proposal5-only" id="gradeFilter" hidden>
+      <div class="section-label">
+        <span>成色</span>
+      </div>
+      <div class="grade-filter-chips" id="gradeFilterChips" role="tablist" aria-label="成色筛选">
+        <button type="button" class="grade-filter-chip" data-grade="SS" role="tab">SS</button>
+        <button type="button" class="grade-filter-chip" data-grade="S" role="tab">S</button>
+        <button type="button" class="grade-filter-chip on" data-grade="A" role="tab">A</button>
+        <button type="button" class="grade-filter-chip" data-grade="B" role="tab">B</button>
+      </div>
     </div>
   </main>
 
@@ -256,6 +270,13 @@
         <button type="button" class="cta-btn heiti" id="buyBtn">立即购买</button>
       </div>
     </div>
+
+    <!-- 方案5：价格 + 成色描述 + 立即购买 -->
+    <button type="button" class="grade-buy-btn" id="gradeBuyBtn" hidden>
+      <span class="grade-buy-price heiti">¥<em id="gradeBuyPrice">371</em></span>
+      <span class="grade-buy-desc" id="gradeBuyDesc">A · 轻微使用</span>
+      <span class="grade-buy-action heiti">立即购买</span>
+    </button>
   </footer>
 
   <!-- 鉴别报告详情（与确认页同构） -->
