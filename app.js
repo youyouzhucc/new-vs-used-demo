@@ -914,7 +914,8 @@
   });
 
   $("#gradeHelpBtn").addEventListener("click", openGradeSheet);
-  $("#reportEntry").addEventListener("click", openReport);
+  const reportEntry = $("#reportEntry");
+  if (reportEntry) reportEntry.addEventListener("click", openReport);
   $("#reportBack").addEventListener("click", closeReport);
   $("#reportGradeOpen").addEventListener("click", openGradeSheet);
   $("#reportBuyBtn").addEventListener("click", openCheckout);
