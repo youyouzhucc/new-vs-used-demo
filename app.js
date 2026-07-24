@@ -377,13 +377,19 @@
   /** 就地更新尺码格，避免 innerHTML 重绘闪动 */
   function renderSizes({ force = false } = {}) {
     const used = isUsedContext() && !isGoodsBound();
+    const needsRebuild =
+      force ||
+      sizeGrid.children.length !== SIZES.length ||
+      !sizeGrid.querySelector(".size-cell-inner");
 
-    if (force || sizeGrid.children.length !== SIZES.length) {
+    if (needsRebuild) {
       sizeGrid.innerHTML = SIZES.map(
         (sz) => `
         <button type="button" class="size-cell" data-size="${sz}" role="option" aria-selected="false">
-          <strong class="heiti">${sz}</strong>
-          <span></span>
+          <span class="size-cell-inner">
+            <strong class="heiti size-num">${sz}</strong>
+            <span class="size-price"></span>
+          </span>
         </button>`
       ).join("");
     }
@@ -397,7 +403,7 @@
       cell.classList.toggle("on", on);
       cell.classList.toggle("sold", sold);
       cell.setAttribute("aria-selected", String(on));
-      const priceEl = cell.querySelector("span");
+      const priceEl = cell.querySelector(".size-price");
       if (priceEl && priceEl.textContent !== priceText) {
         priceEl.textContent = priceText;
       }

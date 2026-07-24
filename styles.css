@@ -1195,48 +1195,59 @@ button {
   grid-template-columns: repeat(5, 1fr);
   gap: 6px;
   padding-bottom: 8px;
+  align-items: stretch;
 }
 
+/* 图一：正方形格，尺码+价格作为整体居中，行内等高 */
 .size-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  background: #fff;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.size-cell-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2px;
-  border: 1.5px solid #e8e8e8;
-  border-radius: 4px;
-  padding: 4px 2px;
   text-align: center;
-  background: #fff;
-  height: 48px;
-  min-height: 48px;
-  max-height: 48px;
-  /* 固定高度，切换选中/价格不跳动 */
-  box-sizing: border-box;
-  overflow: hidden;
+  pointer-events: none;
 }
 
-.size-cell strong {
+.size-cell .size-num {
   display: block;
-  width: 100%;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.15;
   text-align: center;
-  line-height: 1.2;
+  letter-spacing: 0;
 }
 
-.size-cell span {
+.size-cell .size-price {
   display: block;
-  width: 100%;
   font-size: 11px;
-  color: #888;
+  font-weight: 400;
+  color: #999;
+  line-height: 1.15;
   text-align: center;
-  line-height: 1.2;
   font-variant-numeric: lining-nums tabular-nums;
 }
 
 .size-cell.on {
   border-color: #111;
+  border-width: 1.5px;
   background: #fff;
 }
 
