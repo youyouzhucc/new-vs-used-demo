@@ -193,7 +193,6 @@
   const skuBlock = $("#skuBlock");
   const channelBar = $("#channelBar");
   const gradeChannelBar = $("#gradeChannelBar");
-  const gradeChannelTip = $("#gradeChannelTip");
   const ctaBar = $("#ctaBar");
   const checkout = $("#checkout");
   const report = $("#report");
@@ -655,7 +654,6 @@
     goodsPanel.hidden = !isListFlow();
     recommendPanel.hidden = !isRecommendFlow();
     if (seriesBlock) seriesBlock.hidden = state.mode !== "proposal4";
-    if (gradeChannelTip) gradeChannelTip.hidden = state.mode !== "proposal4";
     skuBlock.hidden = isListFlow() || isRecommendFlow();
 
     if (isProposalMode() && state.tab === "new" && state.channel === "95") {
