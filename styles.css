@@ -317,7 +317,7 @@ button {
 .sheet[data-mode="proposal4"] .size-head,
 .sheet[data-mode="proposal5"] .size-head {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: baseline;
   flex-wrap: wrap;
   gap: 8px;
@@ -325,6 +325,10 @@ button {
   font-size: 13px;
   font-weight: 600;
   color: #111;
+}
+
+.grade-filter .spec-label {
+  justify-content: space-between;
 }
 
 .grade-filter .spec-label .text-link {
