@@ -310,7 +310,7 @@
     return newPrice(state.size);
   }
 
-  /** 底部：现状三渠道 / 方案新品双渠道 / 方案4成色渠道 / 方案5购买条 / 其余闲置 CTA */
+  /** 底部：现状三渠道 / 方案新品双渠道 / 方案3成色渠道 / 方案4购买条 / 其余闲置 CTA */
   function syncFooter() {
     const showNewChannels =
       state.mode === "current" || (isProposalMode() && state.tab === "new");
@@ -722,6 +722,7 @@
         btn.setAttribute("aria-selected", String(on));
       });
     }
+    if (isGradeFilterFlow()) renderGradeDesc();
 
     if (isListFlow()) {
       renderChips();
@@ -741,9 +742,29 @@
     renderHeader();
   }
 
-  function openCheckout() {
+  function renderGradeDesc() {
+    const title = $("#gradeDescTitle");
+    const text = $("#gradeDescText");
+    if (!title || !text) return;
+    const g = GRADES[state.grade] || GRADES.A;
+    title.textContent = `${state.grade} · ${g.tab}`;
+    text.textContent = g.short;
+  }
+
+  /** 方案4：SS 直达支付；S/A/B 先鉴别报告 */
+  function handleGradeBuy() {
+    if (state.grade === "SS") {
+      openCheckout({ slim: true, skipAuth: true });
+      return;
+    }
+    openReport({ fromGradeBuy: true });
+  }
+
+  function openCheckout(opts = {}) {
     if (isGoodsBound() && !selectedGoods()) return;
 
+    const slim = Boolean(opts.slim) || isGradeFilterFlow();
+    const skipAuth = Boolean(opts.skipAuth) || (isGradeFilterFlow() && state.grade !== "SS");
     const used = isUsedContext() || state.channel === "95";
     const goods = isGoodsBound() ? selectedGoods() : null;
     const gradeKey = goods ? goods.grade : used ? state.grade || "A" : state.grade;
@@ -756,21 +777,30 @@
     report.hidden = true;
     checkout.hidden = false;
     checkout.dataset.kind = used ? "used" : "new";
+    checkout.dataset.slim = slim ? "1" : "0";
+
+    const head = $("#coSheetHead");
+    const headSlim = $("#coSheetHeadSlim");
+    if (head) head.hidden = slim;
+    if (headSlim) headSlim.hidden = !slim;
 
     $("#coPrice").textContent = String(price);
     $("#paySub").textContent = `确认收货后付款 ¥${price}`;
-    $("#coAuthCard").hidden = !used;
+    $("#coAuthCard").hidden = !used || skipAuth || slim;
     $("#coNewServices").hidden = used;
     const usedSvc = $("#coUsedServices");
     if (usedSvc) usedSvc.hidden = !used;
 
     if (used) {
       $("#coPriceTip").textContent = "同成色低价 价格明细 ›";
-      $("#coSelected").textContent = goods
-        ? `已选：${size}码 · ${gradeKey} · ${g.tab}`
-        : `已选：${size}码 · ${gradeKey} · ${g.tab}`;
-      $("#coEta").textContent = `平台已验 预计${delivery.replace(/^约/, "")}送达`;
-      fillAuthCard(AUTH_IDS.co, gradeKey, code, goods ? goods.pos : "40% 45%");
+      $("#coSelected").textContent = `已选：${size}码 · ${gradeKey} · ${g.tab}`;
+      $("#coEta").textContent =
+        gradeKey === "SS"
+          ? `品牌直发 预计${delivery.replace(/^约/, "")}送达`
+          : `平台已验 预计${delivery.replace(/^约/, "")}送达`;
+      if (!skipAuth && !slim) {
+        fillAuthCard(AUTH_IDS.co, gradeKey, code, goods ? goods.pos : "40% 45%");
+      }
     } else {
       const channelName = state.channel === "brand" ? "品牌官方" : "次日达";
       $("#coPriceTip").textContent = "正品现货 价格明细 ›";
@@ -782,12 +812,22 @@
 
   function closeCheckout() {
     checkout.hidden = true;
+    checkout.dataset.slim = "0";
+    const head = $("#coSheetHead");
+    const headSlim = $("#coSheetHeadSlim");
+    if (head) head.hidden = false;
+    if (headSlim) headSlim.hidden = true;
   }
 
   function openReport() {
     if (isGoodsBound() && !selectedGoods()) return;
     renderReport();
     report.hidden = false;
+    const reportBuy = $("#reportBuyBtn");
+    if (reportBuy) {
+      const line = reportBuy.querySelector(".pay-main-line");
+      if (line) line.textContent = "确认支付";
+    }
   }
 
   function closeReport() {
@@ -867,7 +907,7 @@
     gradeBuyBar.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-buy]");
       if (!btn) return;
-      openCheckout();
+      handleGradeBuy();
     });
   }
 
@@ -989,9 +1029,17 @@
   if (reportEntry) reportEntry.addEventListener("click", openReport);
   $("#reportBack").addEventListener("click", closeReport);
   $("#reportGradeOpen").addEventListener("click", openGradeSheet);
-  $("#reportBuyBtn").addEventListener("click", openCheckout);
+  $("#reportBuyBtn").addEventListener("click", () => {
+    if (isGradeFilterFlow()) {
+      openCheckout({ slim: true, skipAuth: true });
+      return;
+    }
+    openCheckout();
+  });
   $("#buyBtn").addEventListener("click", openCheckout);
   $("#backBtn").addEventListener("click", closeCheckout);
+  const backBtnSlim = $("#backBtnSlim");
+  if (backBtnSlim) backBtnSlim.addEventListener("click", closeCheckout);
 
   $("#payBtn").addEventListener("click", () => {
     $("#payBtn").textContent = "已下单";

@@ -302,15 +302,11 @@ button {
   color: #111;
 }
 
-.grade-filter .spec-label {
-  justify-content: space-between;
-}
-
-.grade-filter .spec-label .text-link {
-  margin-left: auto;
+.grade-desc-head .text-link {
   font-size: 12px;
   font-weight: 500;
   color: #666;
+  flex-shrink: 0;
 }
 
 .spec-label .size-tip,
@@ -364,6 +360,61 @@ button {
   border-color: #111;
   background: #fff;
   box-shadow: 0 0 0 1px #111;
+}
+
+/* 成色说明：筛选项下方（黄框区域） */
+.grade-desc-panel {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  background: #f5f5f5;
+  border: 1px solid #ececec;
+}
+
+.grade-desc-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.grade-desc-head strong {
+  font-size: 13px;
+  color: #111;
+}
+
+.grade-desc-text {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #555;
+}
+
+.checkout[data-slim="1"] #coSheetHead {
+  display: none !important;
+}
+
+.checkout[data-slim="1"] #coSheetHeadSlim {
+  display: flex !important;
+}
+
+.checkout[data-slim="1"] #coAuthCard {
+  display: none !important;
+}
+
+.co-sheet-head-slim {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+
+.co-slim-title {
+  font-size: 16px;
+  color: #111;
 }
 
 /* 类型：文字 chips，固定高度避免切换跳动 */

@@ -76,11 +76,10 @@
       </div>
     </div>
 
-    <!-- 方案4：成色筛选（类型下方，带说明与成色释义） -->
+    <!-- 方案4：成色筛选（类型下方；成色说明在筛选项下方） -->
     <div class="grade-filter proposal4-only" id="gradeFilter" hidden>
       <div class="section-label spec-label">
         <span>成色</span>
-        <button type="button" class="text-link grade-help-btn">成色说明 ›</button>
       </div>
       <div class="grade-tabs" id="gradeFilterChips" role="tablist" aria-label="成色筛选">
         <button type="button" class="grade-tab" data-grade="SS" role="tab">
@@ -95,6 +94,13 @@
         <button type="button" class="grade-tab" data-grade="B" role="tab">
           <strong>B</strong><em>日常使用</em>
         </button>
+      </div>
+      <div class="grade-desc-panel" id="gradeDescPanel" aria-live="polite">
+        <div class="grade-desc-head">
+          <strong class="heiti" id="gradeDescTitle">A · 轻微使用</strong>
+          <button type="button" class="text-link grade-help-btn">成色说明 ›</button>
+        </div>
+        <p class="grade-desc-text" id="gradeDescText">有轻微穿着痕迹，不影响整体外观和功能</p>
       </div>
     </div>
 
@@ -362,13 +368,17 @@
 
   <!-- 确认页：对齐 95 分下单浮层（鉴别报告 + 服务 + 支付） -->
   <section class="checkout" id="checkout" hidden>
-    <header class="co-sheet-head">
+    <header class="co-sheet-head" id="coSheetHead">
       <button type="button" class="co-addr-btn" id="coAddrBtn">
         <span class="co-pin" aria-hidden="true"></span>
         <span id="coAddrText">cc 岚皋路200弄34号305</span>
         <em>›</em>
       </button>
       <button type="button" class="co-close" id="backBtn" aria-label="关闭">×</button>
+    </header>
+    <header class="co-sheet-head co-sheet-head-slim" id="coSheetHeadSlim" hidden>
+      <strong class="heiti co-slim-title">确认支付</strong>
+      <button type="button" class="co-close" id="backBtnSlim" aria-label="关闭">×</button>
     </header>
 
     <div class="co-scroll">
