@@ -407,14 +407,15 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8px;
   padding: 12px 16px;
   border-bottom: 1px solid var(--line);
   background: #fff;
 }
 
-.co-slim-title {
-  font-size: 16px;
-  color: #111;
+.co-sheet-head-slim .co-addr-btn {
+  flex: 1;
+  min-width: 0;
 }
 
 /* 类型：文字 chips，固定高度避免切换跳动 */
